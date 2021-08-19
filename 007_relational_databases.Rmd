@@ -1,0 +1,240 @@
+# Relational databases{-}
+================================================================================
+
+>__About the exercise__
+
+<br> 
+In this exercise I learned about SQL and database-skills. firstly, the data was imported from [this](https://github.com/DataScienceILC/tlsc-dsfb26v-20_workflows) GitHub page. After that the data is manipulated in such a way that the 3 datasets kan be merged togheter. At last the data is visualized in 3 different plots.
+
+
+***
+>__A__
+
+_Load the flu (“./data/flu_data.csv), the dengue (.”/data/dengue_data.csv) and the gapminder ({dslabs} package) into three separate dataframes in R_
+
+```{r Relational databases A}
+#Load the flu dataset
+flu_data_import <- read.csv("data/flu_data.csv", skip = 11)
+#Load the dengue dataset
+dengue_data_import <- read.csv("data/dengue_data.csv", skip = 11)
+#Load the gapminder dataset
+gapminder <- dslabs::gapminder
+```
+
+
+***
+>__B__
+
+_Check if they are in the right shape. Is the data in the ‘tidy’ format? If not change the format to ‘tidy’_
+
+```{r Relational databases B}
+#Make flu_data tidy
+flu_data_tidy <- flu_data_import %>% tidyr::pivot_longer(cols = Argentina:Uruguay,
+                      names_to = "country", 
+                      values_to = "value")
+#Make dengue_data tidy
+dengue_data_tidy <- dengue_data_import %>% tidyr::pivot_longer(cols = Argentina:Venezuela,
+                      names_to = "country", 
+                      values_to = "value")
+```
+
+***
+>__c__
+
+_Change the country and date variables of the three tables so that they coincide in terms of data type, class and values_
+
+```{r Relational databases C}
+##FLU DATASET
+#Seperate the flu date
+flu_data_equal <- flu_data_tidy %>% separate("Date", into = c("year", "month", "day"), sep = "-") 
+#Change the data type
+flu_data_equal$year <- as.integer(flu_data_equal$year)
+flu_data_equal$country <- as.factor(flu_data_equal$country)
+#Delete the day and month column 
+flu_data_equal <- flu_data_equal[-c(2,3)]
+
+
+##DENGUE DATASET
+#Seperate the dengue date
+dengue_data_equal <- dengue_data_tidy %>% separate("Date", into = c("year", "month", "day"), sep = "-") 
+#Change the data type
+dengue_data_equal$year <- as.integer(dengue_data_equal$year)
+dengue_data_equal$country <- as.factor(dengue_data_equal$country)
+#Delete the day and month column
+dengue_data_equal <- dengue_data_equal[-c(2,3)] 
+```
+***
+>__D__
+
+_Store the three tables as separate (so six in total) .csv and .rds files._
+
+```{r Relational databases D}
+#Store the files as .csv
+write.csv(flu_data_equal, "data/flu_data_equal.csv", row.names = FALSE)
+write.csv(dengue_data_equal, "data/dengue_data_equal.csv", row.names = FALSE)
+write.csv(gapminder, "data/gapminder.csv", row.names = FALSE)
+#Store the files as .rds
+saveRDS(flu_data_equal, "data/flu_data_equal.rds")
+saveRDS(dengue_data_equal, "data/dengue_data_equal.rds")
+saveRDS(gapminder, "data/gapminder.rds")
+```
+
+
+
+***
+>__E__
+
+_In Dbeaver create a new PostgreSQL database “workflowsdb”_
+
+```{r Relational databases connection E, eval=FALSE}
+#I left out my password, therefore the code will not work. If you have Postgres you can fill in your own details. 
+#Delete every, eval=FALSE from the headliners of the chunk. Than this Rmarkdown file will work.
+con <- dbConnect(RPostgres::Postgres(), 
+                 dbname = "myfirstdb", 
+                 host="localhost", 
+                 port="5432", 
+                 user="postgres", 
+                 password="xxx") 
+
+```
+
+
+***
+>__F__
+
+_Using RPostgreSQL, insert the tables into the database._
+
+```{r Relational databases F, eval=FALSE}
+dbWriteTable(con, "dengue_data_db", dengue_data_equal, overwrite = T)
+dbWriteTable(con, "flu_data_db", flu_data_equal, overwrite = T)
+dbWriteTable(con, "gapminder_db", gapminder, overwrite = T)
+
+```
+
+***
+>__G__
+
+_Inspect the contents of the tables with SQL (in DBeaver) and save the SQL script._
+
+```{sql, eval=FALSE}
+SELECT *  FROM "dengue_data_db";
+SELECT *  FROM "flu_data_db";
+SELECT *  FROM "gapminder_db";
+```
+
+
+***
+>__H__
+
+_Inspect the contents of the tables with dplyr (in R) and save a RMarkdown showing what you are doing._
+
+```{r Relational databases H, eval=FALSE}
+db_names <- c("flu_data_db", "dengue_data_db", "gapminder_db")
+databases <- list()
+for (x in db_names){
+   databases[[paste(x)]] <- dbReadTable(con, x)
+}
+#inspect the data
+#databases[1]
+#databases[2]
+#databases[3]
+
+```
+
+
+***
+>__I__
+
+_Load the gapminder data in R and change the dataframe in such as way that you could join it to dengue and flue._
+
+
+```{r Relational databases I, eval=FALSE}
+#Filter the year of gapminder_db from 2002 to 2015, so it will fit the data format of dengue and flue
+gapminder_change <- databases[3] %>% as.data.frame()
+gapminder_filter <- gapminder %>% filter(between(year, 2002, 2015)) 
+
+```
+
+***
+>__J__
+
+_Save this clean gapminder data in the “workflowsdb” database_
+
+```{r Relational databases J, eval=FALSE}
+dbWriteTable(con, "gapminder_filter", gapminder_filter, overwrite = T)
+
+```
+
+
+***
+>__K__
+
+_Perform some joins (your choice) with SQL (can be done in DBeaver or with dplyr._
+
+```{r joining the tables, eval=FALSE}
+#Combine all the tables with left_join
+data_dengue_flu <- left_join(dengue_data_equal, flu_data_equal, by = c("country", "year"))
+data_all_tables <- left_join(data_dengue_flu, gapminder_filter, by = c("country", "year"))
+
+
+```
+
+
+***
+>__L__
+
+_Generate a joined table, and export this from the database to R._
+<br>
+The combined dataframe is already in R (called data_all_tables)
+
+***
+>__M__
+
+_Show some descriptive statistics with this table, and at least 3 visualisations using ggplot2._
+
+```{r Relational databases M, plot 1, eval=FALSE}
+#Plot 1, show the fertility over the past years in America
+fertility_america <- data_all_tables %>% filter(continent == "Americas") %>% select(fertility, year)
+fertility_america
+
+#Filter countries on Brazil, Mexico and Bolivia
+data_3_countries <- data_all_tables %>% filter(country == c("Brazil", "Mexico", "Bolivia"))
+
+  
+  
+  #Plot1, life expectancy in the continents
+ggplot(data_3_countries, aes(x = country, y = life_expectancy)) +
+  geom_boxplot(aes(fill = country),
+    outlier.colour = "black") + 
+  labs(title = "Boxplot of the life expectancy in Brazil, Mexico and Bolivia",
+       y = "life expectancy",
+       x = "")
+```
+
+```{r Relational databases M, plot 2, eval=FALSE}
+#plot 2, show the flu data over the past few years in the continent America
+flu_america <- data_all_tables %>% filter(continent == "Americas") %>% select(value.x, year)
+
+ggplot(data=flu_america) +
+  geom_col(aes(x = year, y = value.x, fill = year), show.legend = FALSE) +
+           labs(title = "Bar graph of the flu data over the years in America",
+                y = "")
+```
+
+```{r Relational databases M, plot 3, eval=FALSE}
+#plot 3, line graph of the dengue data in azia over the years
+dengue_America <- data_all_tables %>% filter(continent == "Americas") %>% select(infant_mortality, year)
+
+ggplot(data = dengue_America) +
+  geom_col(aes(x = year, y = infant_mortality, fill = year), show.legend = FALSE)+ scale_fill_gradient(low="red", high="yellow") +
+  labs(title = "Bar graph of the infant mortality in America over the past years", 
+       y = "infant mortality")
+
+```
+***
+>__N__
+
+_show all of your actions in this assignment in a Rmd file, perhaps with pictures and provide text explaining and showcasing your skills._
+
+
+

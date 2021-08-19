@@ -1,0 +1,145 @@
+# Elegans experiment{-}
+================================================================================
+
+>__About the exercise__
+
+<br> 
+In this exercise I have imported a dataset in Rstudio and created a scatterplot. During the exercise i encountered some problems with the data, the goal of this exercise is to fix the errors that occur and create a nice looking plot.
+
+***
+
+>__A__
+
+_Review the following Excel file in the ./data/CE.LIQ.FLOW.062_Tidydata.xlsx (it’s here), by opening the file in Excel. See if you can spot anything peculiar about this file. Do not edit the file in any way. Just close it when you are done. (Annoyingly, Excel asks you to save your changes, even if you did not touch anything in the file: why is this cumbersome?)_
+
+
+There are a lot of different colours used, this makes it hard to read the data. Also the expData is a column without data.
+
+***
+
+>__B__
+
+_Open the file in R, using the {readxl} package._
+
+```{r read_excel, message=FALSE}
+elegans_data <- read_excel(here("data_raw/CE.LIQ.FLOW.062_Tidydata.xlsx"))
+elegans_data %>% head(10) 
+
+
+```
+***
+
+>__C__
+
+_Inspect the data types of columns RawData, compName and compConcentration. What types would you expect from the experimental description above. Have the data types been correctly assigned during the importing of the data into R?_
+
+```{r select, include=FALSE}
+elegans_filter <- elegans_data %>% select(RawData, compName, compConcentration, expType)
+
+```
+
+The compConcentration is a character column and you would expect an numeric column, the data is imported incorrectly
+
+***
+
+>__D__
+
+_Create a graph displaying a scatterplot for the CE.LIQ.FLOW.062_Tidydata.xlsx data, for the different compounds and the varying concentrations. Put the compConcentration on the x-axis, the DataRaw counts on the y-axis and assign a colour to each level in compName. Assign a different symbol (shape =) to each level in the expType variable. Try fixing the labels of the x-axis so that we can read them._
+
+```{r graph, echo=FALSE}
+
+ggplot(data = elegans_data, aes(x = compConcentration, y = RawData)) + 
+         geom_point(aes(colour = compName, shape = expType), alpha = 0.7, size =1) +
+  labs(x = "compound concentration", 
+       y = "Offspring",
+       title = "The amount of offspring after incubation with compound")
+
+```
+
+***
+
+>__E__
+
+_When creating the plot under C), what happened with the ordering of the x-axis labels. Explain why this happens. Look at the data-type of the compConcentration column in the data again to find a clue._
+
+
+```{r data-type, message=FALSE}
+is.numeric(elegans_data$compConcentration)
+```
+
+The data is not numeric, this means that every concentration is seen as a separate point.
+
+***
+
+>__F__
+
+_Correct the data-type of compConcentration to numeric and than look at the graph again. Use a log10 transformation on the x-axis to get a clear graph. Also, add a bit of jitter to the points in the graph so that points are not overlapping._
+
+```{r correct data, message=FALSE}
+#make the data numeric
+elegans_filter$compConcentration <- as.numeric(elegans_filter$compConcentration) 
+#add a column with the log of the concentration
+elegans_filter_log <- elegans_filter %>% mutate(conc_log = log(elegans_filter$compConcentration))
+#make a graph
+ggplot(data = elegans_filter_log, aes(x = conc_log, y = RawData)) + 
+         geom_jitter(aes(colour = compName, shape = expType), alpha = 0.7, size =1) +
+  labs(x = "compound concentration", 
+       y = "Offspring",
+       title = "The amount of offspring after incubation with compound")
+
+```
+
+***
+
+>__G & H__
+
+The positive control for this experiments is ethanol. (H) The negative control for this experiment is S-medium.
+
+***
+
+>__I__
+
+_Think about how you would analyze this experiment to learn whether there is indeed an effect of different concentrations on offspring count and whether the different compounds have a different curve (IC50). Write down you analysis as a step-wise plan_
+
+To prove that there is a significant difference between the positive control and the samples we first need to preform a shapiro test. Than we perform a ANOVA test.
+
+***
+
+>__J__
+
+_Normalize the data for the controlNegative in such a way that the mean value for controlNegative is exactly equal to 1 and that all other values are expressed as a fraction thereof. Rerun your graphs with the normalized data._
+
+``` {r mean negative control, message=FALSE}
+#calculate the mean RawData of s-medium
+
+mean_elegans_data <- elegans_data %>% 
+  select(RawData, compName, compConcentration) %>%
+  filter(compName == 'S-medium') %>%
+  group_by(compName) %>% summarise(mean_RawData = mean(RawData))
+#express all the values to a fraction of the normalized data
+normalized_elegans_data <- elegans_data %>% 
+  select(compName, compConcentration, RawData) %>%
+  mutate(Normalized_RawData = RawData / mean_elegans_data$mean_RawData)
+mean_normalized_elegans_data <- normalized_elegans_data %>%
+  group_by(compName, compConcentration) %>%
+  summarise(mean_normalized_RawData = mean(Normalized_RawData))
+mean_normalized_elegans_data
+
+```
+``` {r graph normalized, message=FALSE}
+mean_normalized_elegans_data %>% ggplot(aes(x = compConcentration, y = mean_normalized_RawData)) +
+  geom_point() +
+  geom_jitter(aes(colour = compName, shape = compName)) +
+  labs(x = "compound concentration", 
+       y = "Offspring",
+       title = "The amount of offspring after incubation with compound")
+
+
+```
+***
+
+>__K__
+
+_Why would you want to take the step under J?_
+
+This makes it easier to compare the samples to the "normal" value.

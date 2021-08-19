@@ -1,0 +1,12 @@
+# Jari's CV{-}
+================================================================================
+
+>__About the exercise__
+
+<br> 
+In this exercise i created a CV with Rmarkdown.
+
+***
+
+
+__You can find my CV by clicking on [this link](./data/CV_jari.pdf)__

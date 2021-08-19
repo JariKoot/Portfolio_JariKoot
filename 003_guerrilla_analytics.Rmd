@@ -1,0 +1,22 @@
+# Guerrilla analytics{-}
+================================================================================
+
+>__About the exercise__
+
+<br> 
+During this exercise I learned about the Guerrilla Analytics Principles. I also added a proper folder structure to all my projects.
+
+***
+
+
+>__A__
+
+- _Look at your RStudio project that you created for the DAUR-II final assignment_
+- _Rearrange your project according the Guerilla principles explained above_
+- _Add README files to the datasets_
+- _Use the {fs} package to share a screenshot of your folder tree in your portfolio, look [here](https://www.tidyverse.org/blog/2018/01/fs-1.0.0/) for more info on how to use the {fs} package._
+
+```{r folder structure, warning=FALSE}
+library(fs)
+dir_tree(path = ".")
+```

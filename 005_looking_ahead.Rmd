@@ -1,0 +1,55 @@
+# Looking ahead{-}
+================================================================================
+
+>__About the exercise__
+
+<br> 
+In this exercise the goal is to look ahead in the future. Where do I see myself in a few years and how am I going to reach that goal?
+
+***
+
+>__Exercise looking ahead__
+
+In class, we discussed this assignment yesterday. In the following weeks, start looking for what you will want to spend your extra time on this semester.
+
+Try, for yourself, to answer the following questions:
+
+Where do I want to be in ~2 years time? <br>
+How am I doing now with respect to this goal? <br>
+What would be the next skill to learn? <br>
+Make a planning on how to start learning this new skill. <br>
+
+
+***
+
+>__My future plans__
+
+__Where do I want to be (in 2 years)?__
+
+I thought about this for a while and I was thinking back to all the school projects I did in the past few years. 
+It came to my attention that microbiological research was my favorite project. <br>
+In this project I had to take several water samples from the my school and analyse these samples on there microbiota.
+I liked this project a lot because you can create some kind of visualization of things that are actually invisible to our eyes. 
+You can only really see what is in the water if you do microbiological research. <br>
+That's why this kind of research interests me and I would like to do something with it in the future <br>
+
+
+__How am I going to reach this goal?__
+
+I'm looking online for places that do this kind of research. I prefer a internship where they work with large data sets so that i can
+apply the DataSciences minor in my work. And if the internship suits me well, I see myself going to work at such a company in the future. <br>
+
+__What would be the next skill to learn?__
+
+It is important in this research area that you can analyze and visualize the data properly. I found a workflow that explains the basics of analysing microbiota in R (page found [here](https://rstudio-pubs-static.s3.amazonaws.com/268156_d3ea37937f4f4469839ab6fa2c483842.html#other_visualizations)). They explain how you can manipulate data and visualize this in different types of plots. <br> 
+
+It would be very useful to view these types of plots interactively. For example, that you can select how many reads will be visualized and how they are plotted. Therefore I am going to learn the basics of Shiny (page found [here](https://towardsdatascience.com/how-to-build-a-data-analysis-app-in-r-shiny-143bee9338f7)). I don't have to learn the whole Shiny package in detail. For me it's about learning the basics of Shiny.
+
+__Make a planning on how to start learning this new skill.__
+
+
+The teacher gave us 4 days to expand our knowledge in subjects of our choice. I have decided to divide these 4 days into 2x2 days. in the first 2 days I will do a basic microbiota analysis. The last 2 days I'm going to follow workflow about the basics of Shiny.
+<br> <br>
+
+__The results of the skills that i have learned are in the next chapter__
+

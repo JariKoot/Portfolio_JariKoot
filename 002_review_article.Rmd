@@ -1,0 +1,172 @@
+# Review of an article{-}
+================================================================================
+
+>__About the exercise__
+
+<br> 
+In this exercise I reviewed a scientific publication from Research Square. The goal is to control the articel on reproducibility and completeness.
+
+***
+
+>__A-D__
+
+- _Initiate an empty RMarkdown file in your RStudio environment and provide author and title (after the title of this exercise)_
+- _Search for a primary Open Access article on one of the above listed topics, using Pubmed Central_
+- _Read the article diagonally to check if is indeed a primary article describing emperical scientific findings._
+- _Include the reference to this article in your Rmd file_
+
+The article is found [here](https://assets.researchsquare.com/files/rs-125888/v1/e437f416-34bb-4d7b-a6cc-03506e8adcf2.pdf)
+
+The data of the article is found [here](https://osf.io/vmek2/)
+
+Its an open access article and it is a primary article.
+
+***
+
+>__E__
+
+_Score the article on the basis of the above ‘Repita’ criteria:_
+
+
+Study purpose                 :   yes
+
+Data availability statement   :   yes
+
+Study location                :   yes
+  
+author review                 :   yes
+
+ethics statements             :   yes
+
+funding statement             :   yes
+
+code availability             :   yes
+
+***
+
+
+>__F__
+
+_Write an Rmarkdown report on your findings, including the table above and some information about the article such as general aim, short methods and results. If data is available, try including some_
+
+
+_R markdown report_
+
+The used article scores good on all the criteria of the Repita points. 
+
+
+_Purpose of the study_
+
+The study is done to give more insight in the problems that occure in the healthcare section during the COVID-19 pandemic. In the study the hypothesis is that the levels of anxiety would be higher in healtcare workers from a region with the highest rates of COVID-19 cases as compared tot hose from a region with the lowest rates of these cases.
+
+
+_Procedure_
+
+The data from the study was colleted online via surveys, emails and various social networks. The first survey was taken from april 2 to may 30, 2020. the follow up was performed during september 15th to 30th 2020, participants were contacted to answer the online survey for the second time. 
+
+
+_Results_
+
+
+In the entire sample, 56.07% of healthcare workers scored as high anxiety in the rst measurement, and signicantly increased to 65.57% in the follow-up. There was a positive and signicant relationship between the levels of anxiety in the two measurements. The mean level of anxiety in the first measurement was 31.97 (s.d. ± 11.28), while in the follow-up the mean signicantly increased to 34.41 (s.d. ± 12.97).
+
+Table 2. Mean scores of anxiety in healthcare workers during the two-repeated measures
+(N = 305)
+
+Characteristics Anxiety
+
+1
+
+st measurement
+
+M (± s.d.)
+
+Follow-up
+
+M (± s.d.)
+
+Age
+
+Younger (< 40) 34.30 (± 10.67) 36.21 (± 11.83)
+
+Older (≥ 40) 29.72 (± 11.43) 32.66 (± 13.80)
+
+Sex
+
+Man 29.00 (± 11.64) 31.90 (± 13.61)
+
+Woman 32.74 (± 11.08) 35.06 (± 12.74)
+
+Region
+
+Inside the country 30.61 (± 11.93) 33.40 (± 15.05)
+
+Metropolitan 33.63 (± 10.24) 35.64 (± 9.74)
+
+Mental disorder history
+
+Absence 31.24 (± 11.50) 33.47 (± 11.41)
+
+Presence 36.44 (± 8.73) 40.12 (± 11.45)
+
+COVID-19 contagion (during the follow-up)
+
+No 31.36 (± 11.83) 32.83 (± 13.31)
+
+Does not know and has no symptoms 32.52 (± 11.10) 36.64 (± 11.79)
+
+Does not know, but has symptoms 35.60 (± 10.30) 43.05 (± 13.10)
+
+Yes 31.06 (± 10.38) 30.73 (± 12.18)
+
+Note: M: Mean; ± s.d.: Standard deviation.
+
+***
+>__G-I__
+
+Store the source Rmd and knitted HTML in a folder called ‘Rmd’ in your course RStudio project. You will need it again later in the course
+
+Done
+
+The script of the article is available in the R script: les1/portfolio1.2script.R
+
+
+***
+>__J__
+
+_Have a look at the code. Describe in your own words what the code intents to achieve._
+
+The code processes the data that was collected via the online surveys. To test if the anxiety levels differ significantly there are multiple t-test performed. The code also makes plots using the ggplot function.
+
+***
+>__K__
+
+_In terms of readibility of the code, how would you grade (1(very bad)-5(very good)) the code available._
+
+I would rate the script an 3 for readibility
+
+***
+>__L&M__
+
+Done
+
+***
+>__N__
+
+_When you encounter errors or flaws in the script, try fixing them and record your changes._
+
+The code that didnt work at many placed the dataset has other column names that are mentioned in the code. This makes it inpossible for me to correct the data without the correct dataset :(
+
+***
+>__O__
+
+_Taken together on a scale from 1 (very hard) to 5 (very easy), how much effort did it take you to reproduce the visualization from the project, report or article_
+
+I rate the code an 1. It took me a long time to try to reproduce the code. This was nearly impossible because the needed files were not provided on the GitHub page.
+
+***
+>__P__ 
+
+Done
+
+***

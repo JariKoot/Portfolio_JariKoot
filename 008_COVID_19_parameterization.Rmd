@@ -1,0 +1,53 @@
+# COVID-19 parameterized report{-}
+================================================================================
+
+>__About the exercise__
+
+<br> 
+In this exercise I will create a parameterized report of COVID-19 cases and deaths. The data used in this exercise can be found [here](https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country). This data will be filtered on the different parameters, these are: 
+
+- data:     Which file should be used
+- country:  Which country to filter on
+- Day:      Day of the first date to work with
+- Month:    Month of the first date to work with
+- Year:     Year of the first date to work with
+
+The params can be filled in in the index.Rmd. the first date that can be used is 1-3-2021
+
+
+```{r loading and manipulating the data}
+#Set this option in the first code chunk
+knitr::opts_chunk$set(echo = params$printcode)
+
+#Loading the data given by a param 
+COVID_data <- read.csv(params$data)
+
+#filter on country given by a param
+COVID_country <- COVID_data %>% filter(countriesAndTerritories == params$country)
+
+#getting the rownumber of the given params (day, month, year)
+row_number <- which((COVID_country$day == params$day) & (COVID_country$month == params$month) & (COVID_country$year == params$year))
+
+#Filter the COVID_country from the first line to row_number
+COVID_filter <- COVID_country[1:row_number, ]
+
+#replace date column to date class
+COVID_filter$dateRep <- as.Date(COVID_filter$dateRep,
+                                format = "%d/%m/%y")
+```
+
+```{r covid cases}
+COVID_filter %>% ggplot() +
+  geom_line(aes(x = dateRep, y = cases), color = "red") +
+  theme_classic() +
+  labs(title = "Recorded COVID-19 cases in the Netherlands",
+       x = "")
+```
+
+```{r covid deaths}
+COVID_filter %>% ggplot() +
+  geom_line(aes(x = dateRep, y = deaths), color = "red") +
+  theme_classic() +
+  labs(title = "Recorded COVID-19 deaths in the Netherlands",
+       x = "")
+```
