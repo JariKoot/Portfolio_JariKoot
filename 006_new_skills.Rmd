@@ -50,5 +50,5 @@ knitr::include_graphics(here::here("images", "shiny_sketch.jpg"))
 
 >__Shiny app__
 
-I decided to put both samples (pre and post) next to eachother in the app, so that you will get a quick overview what is different in each sample. I also made use of tabs so that the table and plots are not on the same page. This makes it easier to view the data. To start the app you need to open the file _app/waternet_app.R_ and press on the button: _Run App_. The app is best viewed in full screen
+I decided to put both samples (pre and post) next to eachother in the app, so that you will get a quick overview what is different in each sample. I also made use of tabs so that the table and plots are not on the same page. This makes it easier to view the data. To start the app you need to open the file _app/waternet_app.R_ and press on the button: _Run App_. The app is best viewed in full screen.
 
