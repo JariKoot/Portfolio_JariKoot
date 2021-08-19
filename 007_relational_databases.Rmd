@@ -4,7 +4,7 @@
 >__About the exercise__
 
 <br> 
-In this exercise I learned about SQL and database-skills. firstly, the data was imported from [this](https://github.com/DataScienceILC/tlsc-dsfb26v-20_workflows) GitHub page. After that the data is manipulated in such a way that the 3 datasets kan be merged togheter. At last the data is visualized in 3 different plots.
+In this exercise I learned about SQL and database-skills. firstly, the data was imported from [this](https://github.com/DataScienceILC/tlsc-dsfb26v-20_workflows) GitHub page. After that the data is manipulated in such a way that the 3 datasets can be merged together. At last the data is visualized in 3 different plots.
 
 
 ***
