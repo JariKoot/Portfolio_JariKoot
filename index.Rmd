@@ -9,9 +9,9 @@ output:
 new_session: yes
 params:
   data: "data/data.csv"
-  country: "Netherlands"
-  day: "18"
-  month: "5"
+  country: "Germany"
+  day: "20"
+  month: "3"
   year: "2021"
 ---
 
@@ -38,12 +38,14 @@ library(vegan)        #2.5-7
 library(VennDiagram)  #1.6.20
 library(lme4)         #1.1-27
 library(phangorn)     #2.7.0
+library(bookdown)     #0.22
 ```
 
 # Introduction{-}
 
+***
 Hey there! I am Jari, a 21 year old Life Science student. With a passion for programming and biology. This is my bookdown portfolio and it is written in Rmarkdown. You can read this book by clicking on the Knit button or visit my website via [this](https://jarikoot.github.io/jaris-cv.html) link 
 <br>
-In this portfolio I will show you the skills I have learned during my minor. If you want to see all the files I created for this book than I recommend to visit [my portfolio gihub page](https://github.com/JariKoot/Portfolio_JariKoot).
+In this portfolio I will show you the skills I have learned during my DataScience for Biology minor. If you want to see all the files I created for this book than I recommend to visit [my portfolio gihub page](https://github.com/JariKoot/Portfolio_JariKoot).
 
-__This book is best viewed via Rmarkdown (not on the website), I encountered a few errors via the site and was not able to fix them before the deadline.__
+***

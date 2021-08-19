@@ -1,3 +1,4 @@
+
 # COVID-19 parameterized report{-}
 ================================================================================
 
@@ -6,13 +7,13 @@
 <br> 
 In this exercise I will create a parameterized report of COVID-19 cases and deaths. The data used in this exercise can be found [here](https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country). This data will be filtered on the different parameters, these are: 
 
-- data:     Which file should be used
-- country:  Which country to filter on
-- Day:      Day of the first date to work with
-- Month:    Month of the first date to work with
-- Year:     Year of the first date to work with
+- data =     which file should be used
+- country =  which country to filter on
+- Day =      day of the first date to work with
+- Month =    month of the first date to work with
+- Year =     year of the first date to work with
 
-The params can be filled in in the index.Rmd. the first date that can be used is 1-3-2021
+The params can be filled in in the index.Rmd. the first date that can be used is 2-3-2021
 
 
 ```{r loading and manipulating the data}
@@ -37,17 +38,21 @@ COVID_filter$dateRep <- as.Date(COVID_filter$dateRep,
 ```
 
 ```{r covid cases}
+#Creating a variable with the country name
+country <- params$country
+#Plotting the graph
 COVID_filter %>% ggplot() +
   geom_line(aes(x = dateRep, y = cases), color = "red") +
   theme_classic() +
-  labs(title = "Recorded COVID-19 cases in the Netherlands",
+  labs(title = paste("recorded COVID-19 cases in", country),
        x = "")
 ```
 
 ```{r covid deaths}
+#Plotting the graph
 COVID_filter %>% ggplot() +
   geom_line(aes(x = dateRep, y = deaths), color = "red") +
   theme_classic() +
-  labs(title = "Recorded COVID-19 deaths in the Netherlands",
+  labs(title = paste("Recorded COVID-19 deaths in", country),
        x = "")
 ```
