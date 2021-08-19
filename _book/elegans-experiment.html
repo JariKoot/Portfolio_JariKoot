@@ -165,7 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>About the exercise</strong></p>
 </blockquote>
 <p><br>
-In this exercise I have imported a dataset in Rstudio and created a scatterplot. During the exercise i encountered some problems with the data, the goal of this exercise is to fix the errors that occur and create a nice looking plot.</p>
+In this exercise I have imported a dataset in Rstudio and created a scatterplot. During the exercise i encountered some problems with the data, the goal of this exercise is to fix the errors that occur and create a nice looking plot. The exercise teaches me to reproduce data analysis from somebody else’s work.</p>
 <hr />
 <blockquote>
 <p><strong>A</strong></p>
@@ -216,7 +216,7 @@ In this exercise I have imported a dataset in Rstudio and created a scatterplot.
 <p><em>When creating the plot under C), what happened with the ordering of the x-axis labels. Explain why this happens. Look at the data-type of the compConcentration column in the data again to find a clue.</em></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="elegans-experiment.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(elegans_data<span class="sc">$</span>compConcentration)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<p>The data is not numeric, this means that every concentration is seen as a separate point.</p>
+<p>The data is not numeric, this means that every concentration is seen as a separate point. Next we will make the data numeric and also add a column with compConcentration to put on the x-as.</p>
 <hr />
 <blockquote>
 <p><strong>F</strong></p>

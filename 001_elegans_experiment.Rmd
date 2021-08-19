@@ -5,7 +5,7 @@
 >__About the exercise__
 
 <br> 
-In this exercise I have imported a dataset in Rstudio and created a scatterplot. During the exercise i encountered some problems with the data, the goal of this exercise is to fix the errors that occur and create a nice looking plot.
+In this exercise I have imported a dataset in Rstudio and created a scatterplot. During the exercise i encountered some problems with the data, the goal of this exercise is to fix the errors that occur and create a nice looking plot. The exercise teaches me to reproduce data analysis from somebody else's work.
 
 ***
 
@@ -68,7 +68,7 @@ _When creating the plot under C), what happened with the ordering of the x-axis 
 is.numeric(elegans_data$compConcentration)
 ```
 
-The data is not numeric, this means that every concentration is seen as a separate point.
+The data is not numeric, this means that every concentration is seen as a separate point. Next we will make the data numeric and also add a column with compConcentration to put on the x-as.
 
 ***
 

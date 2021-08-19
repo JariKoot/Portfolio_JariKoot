@@ -4,7 +4,9 @@
 >__About the exercise__
 
 <br> 
-In this exercise i created a CV with Rmarkdown.
+In this exercise I created a CV with Rmarkdown.
+<br>
+I am using a template that is available on [this GitHub page](https://github.com/rstudio/pagedown)
 
 ***
 

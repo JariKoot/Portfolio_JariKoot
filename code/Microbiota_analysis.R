@@ -15,7 +15,7 @@ library(plotly)
 library(tidyr)
 library(vegan)
 library(VennDiagram)
-library(venneuler)    #Is not installed
+library(venneuler)    
 library(phyloseq)
 
 

@@ -23,6 +23,8 @@ gapminder <- dslabs::gapminder
 ```
 
 
+After the datasets were loaded I had to adjust the way the data is presented
+
 ***
 >__B__
 
@@ -33,11 +35,15 @@ _Check if they are in the right shape. Is the data in the ‘tidy’ format? If 
 flu_data_tidy <- flu_data_import %>% tidyr::pivot_longer(cols = Argentina:Uruguay,
                       names_to = "country", 
                       values_to = "value")
+head(flu_data_tidy)
 #Make dengue_data tidy
 dengue_data_tidy <- dengue_data_import %>% tidyr::pivot_longer(cols = Argentina:Venezuela,
                       names_to = "country", 
                       values_to = "value")
+head(dengue_data_tidy)
 ```
+
+One of the first steps in analysing datasets is to make them tidy. Tidy datasets provide a way to link the structure of a dataset (the layout) with its semantics (what values are in the dataset).
 
 ***
 >__c__
@@ -53,7 +59,7 @@ flu_data_equal$year <- as.integer(flu_data_equal$year)
 flu_data_equal$country <- as.factor(flu_data_equal$country)
 #Delete the day and month column 
 flu_data_equal <- flu_data_equal[-c(2,3)]
-
+head(flu_data_equal)
 
 ##DENGUE DATASET
 #Seperate the dengue date
@@ -63,7 +69,11 @@ dengue_data_equal$year <- as.integer(dengue_data_equal$year)
 dengue_data_equal$country <- as.factor(dengue_data_equal$country)
 #Delete the day and month column
 dengue_data_equal <- dengue_data_equal[-c(2,3)] 
+head(dengue_data_equal)
 ```
+
+As you can see, the datasets are similar in structure. This makes it easy to merge the datasets together.
+
 ***
 >__D__
 
@@ -99,6 +109,8 @@ con <- dbConnect(RPostgres::Postgres(),
 
 ```
 
+For privacy reasons I left out my password, therefore the code will not work. If you have Postgres you can fill in your own details. 
+After that delete every: eval=FALSE from the headliners of the chunk. Than this Rmarkdown file will work.
 
 ***
 >__F__
@@ -111,6 +123,8 @@ dbWriteTable(con, "flu_data_db", flu_data_equal, overwrite = T)
 dbWriteTable(con, "gapminder_db", gapminder, overwrite = T)
 
 ```
+
+After connecting to a PostgreSQL database (using the RPostgres package) I inserted the 3 different tables into one database.
 
 ***
 >__G__
@@ -180,6 +194,7 @@ data_all_tables <- left_join(data_dengue_flu, gapminder_filter, by = c("country"
 
 ```
 
+I chose to do perform the joins with dplyr. The data is joined on the variable country and year.
 
 ***
 >__L__
@@ -233,9 +248,7 @@ ggplot(data = dengue_America) +
 
 ```
 ***
->__N__
 
-_show all of your actions in this assignment in a Rmd file, perhaps with pictures and provide text explaining and showcasing your skills._
-
-
-
+Here you can see 3 plots (if you connected Rstudio to PostgreSQL) made with ggplot. In the first plot you will see a boxplot of the Life expectancy in Brazil, Maxico and Bolivia.
+In the second plot you see a bar graph of the flu data over the years in America.
+In the third plot you see a bar graph of the infant mortality in America over the past few years

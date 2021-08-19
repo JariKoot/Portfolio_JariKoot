@@ -7,13 +7,15 @@
 <br> 
 In this exercise I will create a parameterized report of COVID-19 cases and deaths. The data used in this exercise can be found [here](https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country). This data will be filtered on the different parameters, these are: 
 
-- data =     which file should be used
-- country =  which country to filter on
-- Day =      day of the first date to work with
-- Month =    month of the first date to work with
-- Year =     year of the first date to work with
+Params | Explanation
+------------- | ------------- 
+Data | The location of the file that should be used
+Country | Which country to filter on
+Day | Day of the first date to work with
+Month | Month of the first date to work with
+Year | Year of the first date to work with
 
-The params can be filled in in the index.Rmd. the first date that can be used is 2-3-2021
+The params can be filled in in the index.Rmd. the first date that can be used is 2-3-2021.
 
 
 ```{r loading and manipulating the data}
