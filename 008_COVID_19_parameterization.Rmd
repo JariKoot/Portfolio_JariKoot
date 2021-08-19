@@ -14,10 +14,14 @@ Country | Which country to filter on
 Day | Day of the first date to work with
 Month | Month of the first date to work with
 Year | Year of the first date to work with
+<br>
+The params can be filled in in the index.Rmd. the first date that can be used is 2-3-2021.
+<br>
+If you change a param type this in the console: 
 
-The params can be filled in in the index.Rmd. the first date that can be used is 2-3-2021. 
-
-If you change a param type this in the console: bookdown::render_book(".")
+```{r loading book, eval=FALSE}
+bookdown::render_book(".")
+```
 
 This makes it so that the .html files are reload and the params will be correct fully implemented
 
