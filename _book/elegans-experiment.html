@@ -207,14 +207,13 @@ In this exercise I have imported a dataset in Rstudio and created a scatterplot.
 <p><strong>D</strong></p>
 </blockquote>
 <p><em>Create a graph displaying a scatterplot for the CE.LIQ.FLOW.062_Tidydata.xlsx data, for the different compounds and the varying concentrations. Put the compConcentration on the x-axis, the DataRaw counts on the y-axis and assign a colour to each level in compName. Assign a different symbol (shape =) to each level in the expType variable. Try fixing the labels of the x-axis so that we can read them.</em></p>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_point).</code></pre>
 <p><img src="_main_files/figure-html/graph-1.png" width="672" /></p>
 <hr />
 <blockquote>
 <p><strong>E</strong></p>
 </blockquote>
 <p><em>When creating the plot under C), what happened with the ordering of the x-axis labels. Explain why this happens. Look at the data-type of the compConcentration column in the data again to find a clue.</em></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="elegans-experiment.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(elegans_data<span class="sc">$</span>compConcentration)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="elegans-experiment.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(elegans_data<span class="sc">$</span>compConcentration)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>The data is not numeric, this means that every concentration is seen as a separate point. Next we will make the data numeric and also add a column with compConcentration to put on the x-as.</p>
 <hr />
@@ -222,18 +221,16 @@ In this exercise I have imported a dataset in Rstudio and created a scatterplot.
 <p><strong>F</strong></p>
 </blockquote>
 <p><em>Correct the data-type of compConcentration to numeric and than look at the graph again. Use a log10 transformation on the x-axis to get a clear graph. Also, add a bit of jitter to the points in the graph so that points are not overlapping.</em></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="elegans-experiment.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make the data numeric</span></span>
-<span id="cb6-2"><a href="elegans-experiment.html#cb6-2" aria-hidden="true" tabindex="-1"></a>elegans_filter<span class="sc">$</span>compConcentration <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(elegans_filter<span class="sc">$</span>compConcentration) </span></code></pre></div>
-<pre><code>## Warning: NAs introduced by coercion</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="elegans-experiment.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add a column with the log of the concentration</span></span>
-<span id="cb8-2"><a href="elegans-experiment.html#cb8-2" aria-hidden="true" tabindex="-1"></a>elegans_filter_log <span class="ot">&lt;-</span> elegans_filter <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">conc_log =</span> <span class="fu">log</span>(elegans_filter<span class="sc">$</span>compConcentration))</span>
-<span id="cb8-3"><a href="elegans-experiment.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#make a graph</span></span>
-<span id="cb8-4"><a href="elegans-experiment.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> elegans_filter_log, <span class="fu">aes</span>(<span class="at">x =</span> conc_log, <span class="at">y =</span> RawData)) <span class="sc">+</span> </span>
-<span id="cb8-5"><a href="elegans-experiment.html#cb8-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> compName, <span class="at">shape =</span> expType), <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">size =</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="elegans-experiment.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;compound concentration&quot;</span>, </span>
-<span id="cb8-7"><a href="elegans-experiment.html#cb8-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Offspring&quot;</span>,</span>
-<span id="cb8-8"><a href="elegans-experiment.html#cb8-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;The amount of offspring after incubation with compound&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 6 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="elegans-experiment.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make the data numeric</span></span>
+<span id="cb5-2"><a href="elegans-experiment.html#cb5-2" aria-hidden="true" tabindex="-1"></a>elegans_filter<span class="sc">$</span>compConcentration <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(elegans_filter<span class="sc">$</span>compConcentration) </span>
+<span id="cb5-3"><a href="elegans-experiment.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#add a column with the log of the concentration</span></span>
+<span id="cb5-4"><a href="elegans-experiment.html#cb5-4" aria-hidden="true" tabindex="-1"></a>elegans_filter_log <span class="ot">&lt;-</span> elegans_filter <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">conc_log =</span> <span class="fu">log</span>(elegans_filter<span class="sc">$</span>compConcentration))</span>
+<span id="cb5-5"><a href="elegans-experiment.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#make a graph</span></span>
+<span id="cb5-6"><a href="elegans-experiment.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> elegans_filter_log, <span class="fu">aes</span>(<span class="at">x =</span> conc_log, <span class="at">y =</span> RawData)) <span class="sc">+</span> </span>
+<span id="cb5-7"><a href="elegans-experiment.html#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> compName, <span class="at">shape =</span> expType), <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">size =</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="elegans-experiment.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;compound concentration&quot;</span>, </span>
+<span id="cb5-9"><a href="elegans-experiment.html#cb5-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Offspring&quot;</span>,</span>
+<span id="cb5-10"><a href="elegans-experiment.html#cb5-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;The amount of offspring after incubation with compound&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/correct%20data-1.png" width="672" /></p>
 <hr />
 <blockquote>
@@ -251,20 +248,19 @@ In this exercise I have imported a dataset in Rstudio and created a scatterplot.
 <p><strong>J</strong></p>
 </blockquote>
 <p><em>Normalize the data for the controlNegative in such a way that the mean value for controlNegative is exactly equal to 1 and that all other values are expressed as a fraction thereof. Rerun your graphs with the normalized data.</em></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="elegans-experiment.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate the mean RawData of s-medium</span></span>
-<span id="cb10-2"><a href="elegans-experiment.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="elegans-experiment.html#cb10-3" aria-hidden="true" tabindex="-1"></a>mean_elegans_data <span class="ot">&lt;-</span> elegans_data <span class="sc">%&gt;%</span> </span>
-<span id="cb10-4"><a href="elegans-experiment.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(RawData, compName, compConcentration) <span class="sc">%&gt;%</span></span>
-<span id="cb10-5"><a href="elegans-experiment.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(compName <span class="sc">==</span> <span class="st">&#39;S-medium&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-6"><a href="elegans-experiment.html#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(compName) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_RawData =</span> <span class="fu">mean</span>(RawData))</span>
-<span id="cb10-7"><a href="elegans-experiment.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#express all the values to a fraction of the normalized data</span></span>
-<span id="cb10-8"><a href="elegans-experiment.html#cb10-8" aria-hidden="true" tabindex="-1"></a>normalized_elegans_data <span class="ot">&lt;-</span> elegans_data <span class="sc">%&gt;%</span> </span>
-<span id="cb10-9"><a href="elegans-experiment.html#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(compName, compConcentration, RawData) <span class="sc">%&gt;%</span></span>
-<span id="cb10-10"><a href="elegans-experiment.html#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Normalized_RawData =</span> RawData <span class="sc">/</span> mean_elegans_data<span class="sc">$</span>mean_RawData)</span>
-<span id="cb10-11"><a href="elegans-experiment.html#cb10-11" aria-hidden="true" tabindex="-1"></a>mean_normalized_elegans_data <span class="ot">&lt;-</span> normalized_elegans_data <span class="sc">%&gt;%</span></span>
-<span id="cb10-12"><a href="elegans-experiment.html#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(compName, compConcentration) <span class="sc">%&gt;%</span></span>
-<span id="cb10-13"><a href="elegans-experiment.html#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_normalized_RawData =</span> <span class="fu">mean</span>(Normalized_RawData))</span>
-<span id="cb10-14"><a href="elegans-experiment.html#cb10-14" aria-hidden="true" tabindex="-1"></a>mean_normalized_elegans_data</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="elegans-experiment.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate the mean RawData of s-medium</span></span>
+<span id="cb6-2"><a href="elegans-experiment.html#cb6-2" aria-hidden="true" tabindex="-1"></a>mean_elegans_data <span class="ot">&lt;-</span> elegans_data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="elegans-experiment.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(RawData, compName, compConcentration) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="elegans-experiment.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(compName <span class="sc">==</span> <span class="st">&#39;S-medium&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="elegans-experiment.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(compName) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_RawData =</span> <span class="fu">mean</span>(RawData))</span>
+<span id="cb6-6"><a href="elegans-experiment.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#express all the values to a fraction of the normalized data</span></span>
+<span id="cb6-7"><a href="elegans-experiment.html#cb6-7" aria-hidden="true" tabindex="-1"></a>normalized_elegans_data <span class="ot">&lt;-</span> elegans_data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-8"><a href="elegans-experiment.html#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(compName, compConcentration, RawData) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="elegans-experiment.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Normalized_RawData =</span> RawData <span class="sc">/</span> mean_elegans_data<span class="sc">$</span>mean_RawData)</span>
+<span id="cb6-10"><a href="elegans-experiment.html#cb6-10" aria-hidden="true" tabindex="-1"></a>mean_normalized_elegans_data <span class="ot">&lt;-</span> normalized_elegans_data <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="elegans-experiment.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(compName, compConcentration) <span class="sc">%&gt;%</span></span>
+<span id="cb6-12"><a href="elegans-experiment.html#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_normalized_RawData =</span> <span class="fu">mean</span>(Normalized_RawData))</span>
+<span id="cb6-13"><a href="elegans-experiment.html#cb6-13" aria-hidden="true" tabindex="-1"></a>mean_normalized_elegans_data</span></code></pre></div>
 <pre><code>## # A tibble: 22 x 3
 ## # Groups:   compName [5]
 ##    compName                   compConcentration     mean_normalized_RawData
@@ -280,15 +276,12 @@ In this exercise I have imported a dataset in Rstudio and created a scatterplot.
 ##  9 decane                     4.9899999999999999E-4                   1.08 
 ## 10 decane                     4.99                                    0.238
 ## # ... with 12 more rows</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="elegans-experiment.html#cb12-1" aria-hidden="true" tabindex="-1"></a>mean_normalized_elegans_data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> compConcentration, <span class="at">y =</span> mean_normalized_RawData)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="elegans-experiment.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-3"><a href="elegans-experiment.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> compName, <span class="at">shape =</span> compName)) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="elegans-experiment.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;compound concentration&quot;</span>, </span>
-<span id="cb12-5"><a href="elegans-experiment.html#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Offspring&quot;</span>,</span>
-<span id="cb12-6"><a href="elegans-experiment.html#cb12-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;The amount of offspring after incubation with compound&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_point).
-
-## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="elegans-experiment.html#cb8-1" aria-hidden="true" tabindex="-1"></a>mean_normalized_elegans_data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> compConcentration, <span class="at">y =</span> mean_normalized_RawData)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="elegans-experiment.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="elegans-experiment.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> compName, <span class="at">shape =</span> compName)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="elegans-experiment.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;compound concentration&quot;</span>, </span>
+<span id="cb8-5"><a href="elegans-experiment.html#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Offspring&quot;</span>,</span>
+<span id="cb8-6"><a href="elegans-experiment.html#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;The amount of offspring after incubation with compound&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/graph%20normalized-1.png" width="672" />
 ***</p>
 <blockquote>

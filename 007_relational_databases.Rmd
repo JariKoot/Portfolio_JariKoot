@@ -229,7 +229,8 @@ ggplot(data_3_countries, aes(x = country, y = life_expectancy)) +
 
 To show you the plots I made without sharing you my password, I have include the plots via knitr.
 
-Below you can find the 3 plots I have created with ggplot. In the __first plot__ you will see a boxplot of the Life expectancy in Brazil, Mexico and Bolivia.
+Below you can find the 3 plots I have created with ggplot. <br>
+In the __first plot__ you will see a boxplot of the Life expectancy in Brazil, Mexico and Bolivia.
 In the __second plot__ you see a bar graph of the flu data over the years in America.
 In the __third plot__ you see a bar graph of the infant mortality in America over the past few years
 

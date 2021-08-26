@@ -47,7 +47,7 @@ The compConcentration is a character column and you would expect an numeric colu
 
 _Create a graph displaying a scatterplot for the CE.LIQ.FLOW.062_Tidydata.xlsx data, for the different compounds and the varying concentrations. Put the compConcentration on the x-axis, the DataRaw counts on the y-axis and assign a colour to each level in compName. Assign a different symbol (shape =) to each level in the expType variable. Try fixing the labels of the x-axis so that we can read them._
 
-```{r graph, echo=FALSE}
+```{r graph, echo=FALSE, warning=FALSE}
 
 ggplot(data = elegans_data, aes(x = compConcentration, y = RawData)) + 
          geom_point(aes(colour = compName, shape = expType), alpha = 0.7, size =1) +
@@ -76,7 +76,7 @@ The data is not numeric, this means that every concentration is seen as a separa
 
 _Correct the data-type of compConcentration to numeric and than look at the graph again. Use a log10 transformation on the x-axis to get a clear graph. Also, add a bit of jitter to the points in the graph so that points are not overlapping._
 
-```{r correct data, message=FALSE}
+```{r correct data, message=FALSE, warning=FALSE}
 #make the data numeric
 elegans_filter$compConcentration <- as.numeric(elegans_filter$compConcentration) 
 #add a column with the log of the concentration
@@ -112,7 +112,6 @@ _Normalize the data for the controlNegative in such a way that the mean value fo
 
 ``` {r mean negative control, message=FALSE}
 #calculate the mean RawData of s-medium
-
 mean_elegans_data <- elegans_data %>% 
   select(RawData, compName, compConcentration) %>%
   filter(compName == 'S-medium') %>%
@@ -127,7 +126,7 @@ mean_normalized_elegans_data <- normalized_elegans_data %>%
 mean_normalized_elegans_data
 
 ```
-``` {r graph normalized, message=FALSE}
+``` {r graph normalized, message=FALSE, warning=FALSE}
 mean_normalized_elegans_data %>% ggplot(aes(x = compConcentration, y = mean_normalized_RawData)) +
   geom_point() +
   geom_jitter(aes(colour = compName, shape = compName)) +

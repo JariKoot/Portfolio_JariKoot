@@ -171,23 +171,23 @@ In this exercise I learned about SQL and database-skills. firstly, the data was 
 <p><strong>A</strong></p>
 </blockquote>
 <p><em>Load the flu (“./data/flu_data.csv), the dengue (.”/data/dengue_data.csv) and the gapminder ({dslabs} package) into three separate dataframes in R</em></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="relational-databases.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the flu dataset</span></span>
-<span id="cb16-2"><a href="relational-databases.html#cb16-2" aria-hidden="true" tabindex="-1"></a>flu_data_import <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/flu_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
-<span id="cb16-3"><a href="relational-databases.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the dengue dataset</span></span>
-<span id="cb16-4"><a href="relational-databases.html#cb16-4" aria-hidden="true" tabindex="-1"></a>dengue_data_import <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dengue_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
-<span id="cb16-5"><a href="relational-databases.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the gapminder dataset</span></span>
-<span id="cb16-6"><a href="relational-databases.html#cb16-6" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> dslabs<span class="sc">::</span>gapminder</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="relational-databases.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the flu dataset</span></span>
+<span id="cb11-2"><a href="relational-databases.html#cb11-2" aria-hidden="true" tabindex="-1"></a>flu_data_import <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/flu_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
+<span id="cb11-3"><a href="relational-databases.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the dengue dataset</span></span>
+<span id="cb11-4"><a href="relational-databases.html#cb11-4" aria-hidden="true" tabindex="-1"></a>dengue_data_import <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/dengue_data.csv&quot;</span>, <span class="at">skip =</span> <span class="dv">11</span>)</span>
+<span id="cb11-5"><a href="relational-databases.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the gapminder dataset</span></span>
+<span id="cb11-6"><a href="relational-databases.html#cb11-6" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> dslabs<span class="sc">::</span>gapminder</span></code></pre></div>
 <p>After the datasets were loaded I had to adjust the way the data is presented</p>
 <hr />
 <blockquote>
 <p><strong>B</strong></p>
 </blockquote>
 <p><em>Check if they are in the right shape. Is the data in the ‘tidy’ format? If not change the format to ‘tidy’</em></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="relational-databases.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Make flu_data tidy</span></span>
-<span id="cb17-2"><a href="relational-databases.html#cb17-2" aria-hidden="true" tabindex="-1"></a>flu_data_tidy <span class="ot">&lt;-</span> flu_data_import <span class="sc">%&gt;%</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> Argentina<span class="sc">:</span>Uruguay,</span>
-<span id="cb17-3"><a href="relational-databases.html#cb17-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">&quot;country&quot;</span>, </span>
-<span id="cb17-4"><a href="relational-databases.html#cb17-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
-<span id="cb17-5"><a href="relational-databases.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flu_data_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="relational-databases.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Make flu_data tidy</span></span>
+<span id="cb12-2"><a href="relational-databases.html#cb12-2" aria-hidden="true" tabindex="-1"></a>flu_data_tidy <span class="ot">&lt;-</span> flu_data_import <span class="sc">%&gt;%</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> Argentina<span class="sc">:</span>Uruguay,</span>
+<span id="cb12-3"><a href="relational-databases.html#cb12-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">&quot;country&quot;</span>, </span>
+<span id="cb12-4"><a href="relational-databases.html#cb12-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb12-5"><a href="relational-databases.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flu_data_tidy)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   Date       country   value
 ##   &lt;chr&gt;      &lt;chr&gt;     &lt;int&gt;
@@ -197,11 +197,11 @@ In this exercise I learned about SQL and database-skills. firstly, the data was 
 ## 4 2002-12-29 Belgium      NA
 ## 5 2002-12-29 Bolivia      NA
 ## 6 2002-12-29 Brazil      174</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="relational-databases.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Make dengue_data tidy</span></span>
-<span id="cb19-2"><a href="relational-databases.html#cb19-2" aria-hidden="true" tabindex="-1"></a>dengue_data_tidy <span class="ot">&lt;-</span> dengue_data_import <span class="sc">%&gt;%</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> Argentina<span class="sc">:</span>Venezuela,</span>
-<span id="cb19-3"><a href="relational-databases.html#cb19-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">&quot;country&quot;</span>, </span>
-<span id="cb19-4"><a href="relational-databases.html#cb19-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
-<span id="cb19-5"><a href="relational-databases.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dengue_data_tidy)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="relational-databases.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Make dengue_data tidy</span></span>
+<span id="cb14-2"><a href="relational-databases.html#cb14-2" aria-hidden="true" tabindex="-1"></a>dengue_data_tidy <span class="ot">&lt;-</span> dengue_data_import <span class="sc">%&gt;%</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> Argentina<span class="sc">:</span>Venezuela,</span>
+<span id="cb14-3"><a href="relational-databases.html#cb14-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">&quot;country&quot;</span>, </span>
+<span id="cb14-4"><a href="relational-databases.html#cb14-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb14-5"><a href="relational-databases.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dengue_data_tidy)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   Date       country    value
 ##   &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt;
@@ -217,15 +217,15 @@ In this exercise I learned about SQL and database-skills. firstly, the data was 
 <p><strong>c</strong></p>
 </blockquote>
 <p><em>Change the country and date variables of the three tables so that they coincide in terms of data type, class and values</em></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="relational-databases.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">##FLU DATASET</span></span>
-<span id="cb21-2"><a href="relational-databases.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Seperate the flu date</span></span>
-<span id="cb21-3"><a href="relational-databases.html#cb21-3" aria-hidden="true" tabindex="-1"></a>flu_data_equal <span class="ot">&lt;-</span> flu_data_tidy <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="st">&quot;Date&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>) </span>
-<span id="cb21-4"><a href="relational-databases.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Change the data type</span></span>
-<span id="cb21-5"><a href="relational-databases.html#cb21-5" aria-hidden="true" tabindex="-1"></a>flu_data_equal<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(flu_data_equal<span class="sc">$</span>year)</span>
-<span id="cb21-6"><a href="relational-databases.html#cb21-6" aria-hidden="true" tabindex="-1"></a>flu_data_equal<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(flu_data_equal<span class="sc">$</span>country)</span>
-<span id="cb21-7"><a href="relational-databases.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete the day and month column </span></span>
-<span id="cb21-8"><a href="relational-databases.html#cb21-8" aria-hidden="true" tabindex="-1"></a>flu_data_equal <span class="ot">&lt;-</span> flu_data_equal[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)]</span>
-<span id="cb21-9"><a href="relational-databases.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flu_data_equal)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="relational-databases.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">##FLU DATASET</span></span>
+<span id="cb16-2"><a href="relational-databases.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Seperate the flu date</span></span>
+<span id="cb16-3"><a href="relational-databases.html#cb16-3" aria-hidden="true" tabindex="-1"></a>flu_data_equal <span class="ot">&lt;-</span> flu_data_tidy <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="st">&quot;Date&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>) </span>
+<span id="cb16-4"><a href="relational-databases.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Change the data type</span></span>
+<span id="cb16-5"><a href="relational-databases.html#cb16-5" aria-hidden="true" tabindex="-1"></a>flu_data_equal<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(flu_data_equal<span class="sc">$</span>year)</span>
+<span id="cb16-6"><a href="relational-databases.html#cb16-6" aria-hidden="true" tabindex="-1"></a>flu_data_equal<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(flu_data_equal<span class="sc">$</span>country)</span>
+<span id="cb16-7"><a href="relational-databases.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete the day and month column </span></span>
+<span id="cb16-8"><a href="relational-databases.html#cb16-8" aria-hidden="true" tabindex="-1"></a>flu_data_equal <span class="ot">&lt;-</span> flu_data_equal[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)]</span>
+<span id="cb16-9"><a href="relational-databases.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flu_data_equal)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##    year country   value
 ##   &lt;int&gt; &lt;fct&gt;     &lt;int&gt;
@@ -235,15 +235,15 @@ In this exercise I learned about SQL and database-skills. firstly, the data was 
 ## 4  2002 Belgium      NA
 ## 5  2002 Bolivia      NA
 ## 6  2002 Brazil      174</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="relational-databases.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">##DENGUE DATASET</span></span>
-<span id="cb23-2"><a href="relational-databases.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Seperate the dengue date</span></span>
-<span id="cb23-3"><a href="relational-databases.html#cb23-3" aria-hidden="true" tabindex="-1"></a>dengue_data_equal <span class="ot">&lt;-</span> dengue_data_tidy <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="st">&quot;Date&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>) </span>
-<span id="cb23-4"><a href="relational-databases.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Change the data type</span></span>
-<span id="cb23-5"><a href="relational-databases.html#cb23-5" aria-hidden="true" tabindex="-1"></a>dengue_data_equal<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(dengue_data_equal<span class="sc">$</span>year)</span>
-<span id="cb23-6"><a href="relational-databases.html#cb23-6" aria-hidden="true" tabindex="-1"></a>dengue_data_equal<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dengue_data_equal<span class="sc">$</span>country)</span>
-<span id="cb23-7"><a href="relational-databases.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete the day and month column</span></span>
-<span id="cb23-8"><a href="relational-databases.html#cb23-8" aria-hidden="true" tabindex="-1"></a>dengue_data_equal <span class="ot">&lt;-</span> dengue_data_equal[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] </span>
-<span id="cb23-9"><a href="relational-databases.html#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dengue_data_equal)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="relational-databases.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">##DENGUE DATASET</span></span>
+<span id="cb18-2"><a href="relational-databases.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Seperate the dengue date</span></span>
+<span id="cb18-3"><a href="relational-databases.html#cb18-3" aria-hidden="true" tabindex="-1"></a>dengue_data_equal <span class="ot">&lt;-</span> dengue_data_tidy <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="st">&quot;Date&quot;</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>) </span>
+<span id="cb18-4"><a href="relational-databases.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Change the data type</span></span>
+<span id="cb18-5"><a href="relational-databases.html#cb18-5" aria-hidden="true" tabindex="-1"></a>dengue_data_equal<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(dengue_data_equal<span class="sc">$</span>year)</span>
+<span id="cb18-6"><a href="relational-databases.html#cb18-6" aria-hidden="true" tabindex="-1"></a>dengue_data_equal<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dengue_data_equal<span class="sc">$</span>country)</span>
+<span id="cb18-7"><a href="relational-databases.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete the day and month column</span></span>
+<span id="cb18-8"><a href="relational-databases.html#cb18-8" aria-hidden="true" tabindex="-1"></a>dengue_data_equal <span class="ot">&lt;-</span> dengue_data_equal[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)] </span>
+<span id="cb18-9"><a href="relational-databases.html#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dengue_data_equal)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##    year country    value
 ##   &lt;int&gt; &lt;fct&gt;      &lt;dbl&gt;
@@ -259,27 +259,27 @@ In this exercise I learned about SQL and database-skills. firstly, the data was 
 <p><strong>D</strong></p>
 </blockquote>
 <p><em>Store the three tables as separate (so six in total) .csv and .rds files.</em></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="relational-databases.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Store the files as .csv</span></span>
-<span id="cb25-2"><a href="relational-databases.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(flu_data_equal, <span class="st">&quot;data/flu_data_equal.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb25-3"><a href="relational-databases.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dengue_data_equal, <span class="st">&quot;data/dengue_data_equal.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb25-4"><a href="relational-databases.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(gapminder, <span class="st">&quot;data/gapminder.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb25-5"><a href="relational-databases.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Store the files as .rds</span></span>
-<span id="cb25-6"><a href="relational-databases.html#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(flu_data_equal, <span class="st">&quot;data/flu_data_equal.rds&quot;</span>)</span>
-<span id="cb25-7"><a href="relational-databases.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dengue_data_equal, <span class="st">&quot;data/dengue_data_equal.rds&quot;</span>)</span>
-<span id="cb25-8"><a href="relational-databases.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(gapminder, <span class="st">&quot;data/gapminder.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="relational-databases.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Store the files as .csv</span></span>
+<span id="cb20-2"><a href="relational-databases.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(flu_data_equal, <span class="st">&quot;data/flu_data_equal.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-3"><a href="relational-databases.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(dengue_data_equal, <span class="st">&quot;data/dengue_data_equal.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-4"><a href="relational-databases.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(gapminder, <span class="st">&quot;data/gapminder.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-5"><a href="relational-databases.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Store the files as .rds</span></span>
+<span id="cb20-6"><a href="relational-databases.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(flu_data_equal, <span class="st">&quot;data/flu_data_equal.rds&quot;</span>)</span>
+<span id="cb20-7"><a href="relational-databases.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dengue_data_equal, <span class="st">&quot;data/dengue_data_equal.rds&quot;</span>)</span>
+<span id="cb20-8"><a href="relational-databases.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(gapminder, <span class="st">&quot;data/gapminder.rds&quot;</span>)</span></code></pre></div>
 <hr />
 <blockquote>
 <p><strong>E</strong></p>
 </blockquote>
 <p><em>In Dbeaver create a new PostgreSQL database “workflowsdb”</em></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="relational-databases.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#I left out my password, therefore the code will not work. If you have Postgres you can fill in your own details. </span></span>
-<span id="cb26-2"><a href="relational-databases.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete every, eval=FALSE from the headliners of the chunk. Than this Rmarkdown file will work.</span></span>
-<span id="cb26-3"><a href="relational-databases.html#cb26-3" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(), </span>
-<span id="cb26-4"><a href="relational-databases.html#cb26-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;myfirstdb&quot;</span>, </span>
-<span id="cb26-5"><a href="relational-databases.html#cb26-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host=</span><span class="st">&quot;localhost&quot;</span>, </span>
-<span id="cb26-6"><a href="relational-databases.html#cb26-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port=</span><span class="st">&quot;5432&quot;</span>, </span>
-<span id="cb26-7"><a href="relational-databases.html#cb26-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user=</span><span class="st">&quot;postgres&quot;</span>, </span>
-<span id="cb26-8"><a href="relational-databases.html#cb26-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span><span class="st">&quot;xxx&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="relational-databases.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#I left out my password, therefore the code will not work. If you have Postgres you can fill in your own details. </span></span>
+<span id="cb21-2"><a href="relational-databases.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Delete every, eval=FALSE from the headliners of the chunk. Than this Rmarkdown file will work.</span></span>
+<span id="cb21-3"><a href="relational-databases.html#cb21-3" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(), </span>
+<span id="cb21-4"><a href="relational-databases.html#cb21-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;myfirstdb&quot;</span>, </span>
+<span id="cb21-5"><a href="relational-databases.html#cb21-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host=</span><span class="st">&quot;localhost&quot;</span>, </span>
+<span id="cb21-6"><a href="relational-databases.html#cb21-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port=</span><span class="st">&quot;5432&quot;</span>, </span>
+<span id="cb21-7"><a href="relational-databases.html#cb21-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user=</span><span class="st">&quot;postgres&quot;</span>, </span>
+<span id="cb21-8"><a href="relational-databases.html#cb21-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span><span class="st">&quot;xxx&quot;</span>) </span></code></pre></div>
 <p>For privacy reasons I left out my password, therefore the code will not work. If you have Postgres you can fill in your own details.
 After that delete every: eval=FALSE from the headliners of the chunk. Than this Rmarkdown file will work.</p>
 <hr />
@@ -287,54 +287,54 @@ After that delete every: eval=FALSE from the headliners of the chunk. Than this 
 <p><strong>F</strong></p>
 </blockquote>
 <p><em>Using RPostgreSQL, insert the tables into the database.</em></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="relational-databases.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;dengue_data_db&quot;</span>, dengue_data_equal, <span class="at">overwrite =</span> T)</span>
-<span id="cb27-2"><a href="relational-databases.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;flu_data_db&quot;</span>, flu_data_equal, <span class="at">overwrite =</span> T)</span>
-<span id="cb27-3"><a href="relational-databases.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;gapminder_db&quot;</span>, gapminder, <span class="at">overwrite =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="relational-databases.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;dengue_data_db&quot;</span>, dengue_data_equal, <span class="at">overwrite =</span> T)</span>
+<span id="cb22-2"><a href="relational-databases.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;flu_data_db&quot;</span>, flu_data_equal, <span class="at">overwrite =</span> T)</span>
+<span id="cb22-3"><a href="relational-databases.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;gapminder_db&quot;</span>, gapminder, <span class="at">overwrite =</span> T)</span></code></pre></div>
 <p>After connecting to a PostgreSQL database (using the RPostgres package) I inserted the 3 different tables into one database.</p>
 <hr />
 <blockquote>
 <p><strong>G</strong></p>
 </blockquote>
 <p><em>Inspect the contents of the tables with SQL (in DBeaver) and save the SQL script.</em></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb28-1"><a href="relational-databases.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span>  <span class="kw">FROM</span> <span class="ot">&quot;dengue_data_db&quot;</span>;</span>
-<span id="cb28-2"><a href="relational-databases.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span>  <span class="kw">FROM</span> <span class="ot">&quot;flu_data_db&quot;</span>;</span>
-<span id="cb28-3"><a href="relational-databases.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span>  <span class="kw">FROM</span> <span class="ot">&quot;gapminder_db&quot;</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb23-1"><a href="relational-databases.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span>  <span class="kw">FROM</span> <span class="ot">&quot;dengue_data_db&quot;</span>;</span>
+<span id="cb23-2"><a href="relational-databases.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span>  <span class="kw">FROM</span> <span class="ot">&quot;flu_data_db&quot;</span>;</span>
+<span id="cb23-3"><a href="relational-databases.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span>  <span class="kw">FROM</span> <span class="ot">&quot;gapminder_db&quot;</span>;</span></code></pre></div>
 <hr />
 <blockquote>
 <p><strong>H</strong></p>
 </blockquote>
 <p><em>Inspect the contents of the tables with dplyr (in R) and save a RMarkdown showing what you are doing.</em></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="relational-databases.html#cb29-1" aria-hidden="true" tabindex="-1"></a>db_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;flu_data_db&quot;</span>, <span class="st">&quot;dengue_data_db&quot;</span>, <span class="st">&quot;gapminder_db&quot;</span>)</span>
-<span id="cb29-2"><a href="relational-databases.html#cb29-2" aria-hidden="true" tabindex="-1"></a>databases <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb29-3"><a href="relational-databases.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> db_names){</span>
-<span id="cb29-4"><a href="relational-databases.html#cb29-4" aria-hidden="true" tabindex="-1"></a>   databases[[<span class="fu">paste</span>(x)]] <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, x)</span>
-<span id="cb29-5"><a href="relational-databases.html#cb29-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-6"><a href="relational-databases.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">#inspect the data</span></span>
-<span id="cb29-7"><a href="relational-databases.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">#databases[1]</span></span>
-<span id="cb29-8"><a href="relational-databases.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">#databases[2]</span></span>
-<span id="cb29-9"><a href="relational-databases.html#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co">#databases[3]</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="relational-databases.html#cb24-1" aria-hidden="true" tabindex="-1"></a>db_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;flu_data_db&quot;</span>, <span class="st">&quot;dengue_data_db&quot;</span>, <span class="st">&quot;gapminder_db&quot;</span>)</span>
+<span id="cb24-2"><a href="relational-databases.html#cb24-2" aria-hidden="true" tabindex="-1"></a>databases <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb24-3"><a href="relational-databases.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> db_names){</span>
+<span id="cb24-4"><a href="relational-databases.html#cb24-4" aria-hidden="true" tabindex="-1"></a>   databases[[<span class="fu">paste</span>(x)]] <span class="ot">&lt;-</span> <span class="fu">dbReadTable</span>(con, x)</span>
+<span id="cb24-5"><a href="relational-databases.html#cb24-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-6"><a href="relational-databases.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#inspect the data</span></span>
+<span id="cb24-7"><a href="relational-databases.html#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#databases[1]</span></span>
+<span id="cb24-8"><a href="relational-databases.html#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#databases[2]</span></span>
+<span id="cb24-9"><a href="relational-databases.html#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#databases[3]</span></span></code></pre></div>
 <hr />
 <blockquote>
 <p><strong>I</strong></p>
 </blockquote>
 <p><em>Load the gapminder data in R and change the dataframe in such as way that you could join it to dengue and flue.</em></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="relational-databases.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter the year of gapminder_db from 2002 to 2015, so it will fit the data format of dengue and flue</span></span>
-<span id="cb30-2"><a href="relational-databases.html#cb30-2" aria-hidden="true" tabindex="-1"></a>gapminder_change <span class="ot">&lt;-</span> databases[<span class="dv">3</span>] <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
-<span id="cb30-3"><a href="relational-databases.html#cb30-3" aria-hidden="true" tabindex="-1"></a>gapminder_filter <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">between</span>(year, <span class="dv">2002</span>, <span class="dv">2015</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="relational-databases.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter the year of gapminder_db from 2002 to 2015, so it will fit the data format of dengue and flue</span></span>
+<span id="cb25-2"><a href="relational-databases.html#cb25-2" aria-hidden="true" tabindex="-1"></a>gapminder_change <span class="ot">&lt;-</span> databases[<span class="dv">3</span>] <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb25-3"><a href="relational-databases.html#cb25-3" aria-hidden="true" tabindex="-1"></a>gapminder_filter <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">between</span>(year, <span class="dv">2002</span>, <span class="dv">2015</span>)) </span></code></pre></div>
 <hr />
 <blockquote>
 <p><strong>J</strong></p>
 </blockquote>
 <p><em>Save this clean gapminder data in the “workflowsdb” database</em></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="relational-databases.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;gapminder_filter&quot;</span>, gapminder_filter, <span class="at">overwrite =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="relational-databases.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">&quot;gapminder_filter&quot;</span>, gapminder_filter, <span class="at">overwrite =</span> T)</span></code></pre></div>
 <hr />
 <blockquote>
 <p><strong>K</strong></p>
 </blockquote>
 <p><em>Perform some joins (your choice) with SQL (can be done in DBeaver or with dplyr.</em></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="relational-databases.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Combine all the tables with left_join</span></span>
-<span id="cb32-2"><a href="relational-databases.html#cb32-2" aria-hidden="true" tabindex="-1"></a>data_dengue_flu <span class="ot">&lt;-</span> <span class="fu">left_join</span>(dengue_data_equal, flu_data_equal, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
-<span id="cb32-3"><a href="relational-databases.html#cb32-3" aria-hidden="true" tabindex="-1"></a>data_all_tables <span class="ot">&lt;-</span> <span class="fu">left_join</span>(data_dengue_flu, gapminder_filter, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="relational-databases.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Combine all the tables with left_join</span></span>
+<span id="cb27-2"><a href="relational-databases.html#cb27-2" aria-hidden="true" tabindex="-1"></a>data_dengue_flu <span class="ot">&lt;-</span> <span class="fu">left_join</span>(dengue_data_equal, flu_data_equal, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb27-3"><a href="relational-databases.html#cb27-3" aria-hidden="true" tabindex="-1"></a>data_all_tables <span class="ot">&lt;-</span> <span class="fu">left_join</span>(data_dengue_flu, gapminder_filter, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;country&quot;</span>, <span class="st">&quot;year&quot;</span>))</span></code></pre></div>
 <p>I chose to do perform the joins with dplyr. The data is joined on the variable country and year.</p>
 <hr />
 <blockquote>
@@ -348,69 +348,70 @@ The combined dataframe is already in R (called data_all_tables)</p>
 <p><strong>M</strong></p>
 </blockquote>
 <p><em>Show some descriptive statistics with this table, and at least 3 visualisations using ggplot2.</em></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="relational-databases.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot 1, show the fertility over the past years in America</span></span>
-<span id="cb33-2"><a href="relational-databases.html#cb33-2" aria-hidden="true" tabindex="-1"></a>fertility_america <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(fertility, year)</span>
-<span id="cb33-3"><a href="relational-databases.html#cb33-3" aria-hidden="true" tabindex="-1"></a>fertility_america</span>
-<span id="cb33-4"><a href="relational-databases.html#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="relational-databases.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter countries on Brazil, Mexico and Bolivia</span></span>
-<span id="cb33-6"><a href="relational-databases.html#cb33-6" aria-hidden="true" tabindex="-1"></a>data_3_countries <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="fu">c</span>(<span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Mexico&quot;</span>, <span class="st">&quot;Bolivia&quot;</span>))</span>
-<span id="cb33-7"><a href="relational-databases.html#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-8"><a href="relational-databases.html#cb33-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb33-9"><a href="relational-databases.html#cb33-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb33-10"><a href="relational-databases.html#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Plot1, life expectancy in the continents</span></span>
-<span id="cb33-11"><a href="relational-databases.html#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_3_countries, <span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> life_expectancy)) <span class="sc">+</span></span>
-<span id="cb33-12"><a href="relational-databases.html#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> country),</span>
-<span id="cb33-13"><a href="relational-databases.html#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">outlier.colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb33-14"><a href="relational-databases.html#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Boxplot of the life expectancy in Brazil, Mexico and Bolivia&quot;</span>,</span>
-<span id="cb33-15"><a href="relational-databases.html#cb33-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;life expectancy&quot;</span>,</span>
-<span id="cb33-16"><a href="relational-databases.html#cb33-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="relational-databases.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot 1, show the fertility over the past years in America</span></span>
+<span id="cb28-2"><a href="relational-databases.html#cb28-2" aria-hidden="true" tabindex="-1"></a>fertility_america <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(fertility, year)</span>
+<span id="cb28-3"><a href="relational-databases.html#cb28-3" aria-hidden="true" tabindex="-1"></a>fertility_america</span>
+<span id="cb28-4"><a href="relational-databases.html#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="relational-databases.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter countries on Brazil, Mexico and Bolivia</span></span>
+<span id="cb28-6"><a href="relational-databases.html#cb28-6" aria-hidden="true" tabindex="-1"></a>data_3_countries <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="fu">c</span>(<span class="st">&quot;Brazil&quot;</span>, <span class="st">&quot;Mexico&quot;</span>, <span class="st">&quot;Bolivia&quot;</span>))</span>
+<span id="cb28-7"><a href="relational-databases.html#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="relational-databases.html#cb28-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-9"><a href="relational-databases.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-10"><a href="relational-databases.html#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Plot1, life expectancy in the continents</span></span>
+<span id="cb28-11"><a href="relational-databases.html#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_3_countries, <span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> life_expectancy)) <span class="sc">+</span></span>
+<span id="cb28-12"><a href="relational-databases.html#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> country),</span>
+<span id="cb28-13"><a href="relational-databases.html#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">outlier.colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb28-14"><a href="relational-databases.html#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Boxplot of the life expectancy in Brazil, Mexico and Bolivia&quot;</span>,</span>
+<span id="cb28-15"><a href="relational-databases.html#cb28-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;life expectancy&quot;</span>,</span>
+<span id="cb28-16"><a href="relational-databases.html#cb28-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>To show you the plots I made without sharing you my password, I have include the plots via knitr.</p>
-<p>Below you can find the 3 plots I have created with ggplot. In the <strong>first plot</strong> you will see a boxplot of the Life expectancy in Brazil, Mexico and Bolivia.
+<p>Below you can find the 3 plots I have created with ggplot. <br>
+In the <strong>first plot</strong> you will see a boxplot of the Life expectancy in Brazil, Mexico and Bolivia.
 In the <strong>second plot</strong> you see a bar graph of the flu data over the years in America.
 In the <strong>third plot</strong> you see a bar graph of the infant mortality in America over the past few years</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="relational-databases.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Include the first plot</span></span>
-<span id="cb34-2"><a href="relational-databases.html#cb34-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
-<span id="cb34-3"><a href="relational-databases.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
-<span id="cb34-4"><a href="relational-databases.html#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_book&quot;</span>,</span>
-<span id="cb34-5"><a href="relational-databases.html#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_main_files&quot;</span>,</span>
-<span id="cb34-6"><a href="relational-databases.html#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;figure-html&quot;</span>,</span>
-<span id="cb34-7"><a href="relational-databases.html#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Relational_databases_plot1.png&quot;</span></span>
-<span id="cb34-8"><a href="relational-databases.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-9"><a href="relational-databases.html#cb34-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="relational-databases.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Include the first plot</span></span>
+<span id="cb29-2"><a href="relational-databases.html#cb29-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb29-3"><a href="relational-databases.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb29-4"><a href="relational-databases.html#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_book&quot;</span>,</span>
+<span id="cb29-5"><a href="relational-databases.html#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_main_files&quot;</span>,</span>
+<span id="cb29-6"><a href="relational-databases.html#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;figure-html&quot;</span>,</span>
+<span id="cb29-7"><a href="relational-databases.html#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Relational_databases_plot1.png&quot;</span></span>
+<span id="cb29-8"><a href="relational-databases.html#cb29-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-9"><a href="relational-databases.html#cb29-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="_book/_main_files/figure-html/Relational_databases_plot1.png" width="672" /></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="relational-databases.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot 2, show the flu data over the past few years in the continent America</span></span>
-<span id="cb35-2"><a href="relational-databases.html#cb35-2" aria-hidden="true" tabindex="-1"></a>flu_america <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value.x, year)</span>
-<span id="cb35-3"><a href="relational-databases.html#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="relational-databases.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>flu_america) <span class="sc">+</span></span>
-<span id="cb35-5"><a href="relational-databases.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value.x, <span class="at">fill =</span> year), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb35-6"><a href="relational-databases.html#cb35-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Bar graph of the flu data over the years in America&quot;</span>,</span>
-<span id="cb35-7"><a href="relational-databases.html#cb35-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="relational-databases.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Include the second plot</span></span>
-<span id="cb36-2"><a href="relational-databases.html#cb36-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
-<span id="cb36-3"><a href="relational-databases.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
-<span id="cb36-4"><a href="relational-databases.html#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_book&quot;</span>,</span>
-<span id="cb36-5"><a href="relational-databases.html#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_main_files&quot;</span>,</span>
-<span id="cb36-6"><a href="relational-databases.html#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;figure-html&quot;</span>,</span>
-<span id="cb36-7"><a href="relational-databases.html#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Relational_databases_plot2.png&quot;</span></span>
-<span id="cb36-8"><a href="relational-databases.html#cb36-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb36-9"><a href="relational-databases.html#cb36-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="relational-databases.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot 2, show the flu data over the past few years in the continent America</span></span>
+<span id="cb30-2"><a href="relational-databases.html#cb30-2" aria-hidden="true" tabindex="-1"></a>flu_america <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value.x, year)</span>
+<span id="cb30-3"><a href="relational-databases.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="relational-databases.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>flu_america) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="relational-databases.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value.x, <span class="at">fill =</span> year), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="relational-databases.html#cb30-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Bar graph of the flu data over the years in America&quot;</span>,</span>
+<span id="cb30-7"><a href="relational-databases.html#cb30-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="relational-databases.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Include the second plot</span></span>
+<span id="cb31-2"><a href="relational-databases.html#cb31-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb31-3"><a href="relational-databases.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb31-4"><a href="relational-databases.html#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_book&quot;</span>,</span>
+<span id="cb31-5"><a href="relational-databases.html#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_main_files&quot;</span>,</span>
+<span id="cb31-6"><a href="relational-databases.html#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;figure-html&quot;</span>,</span>
+<span id="cb31-7"><a href="relational-databases.html#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Relational_databases_plot2.png&quot;</span></span>
+<span id="cb31-8"><a href="relational-databases.html#cb31-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-9"><a href="relational-databases.html#cb31-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="_book/_main_files/figure-html/Relational_databases_plot2.png" width="672" /></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="relational-databases.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot 3, line graph of the dengue data in azia over the years</span></span>
-<span id="cb37-2"><a href="relational-databases.html#cb37-2" aria-hidden="true" tabindex="-1"></a>dengue_America <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(infant_mortality, year)</span>
-<span id="cb37-3"><a href="relational-databases.html#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="relational-databases.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dengue_America) <span class="sc">+</span></span>
-<span id="cb37-5"><a href="relational-databases.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> infant_mortality, <span class="at">fill =</span> year), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span> <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&quot;red&quot;</span>, <span class="at">high=</span><span class="st">&quot;yellow&quot;</span>) <span class="sc">+</span></span>
-<span id="cb37-6"><a href="relational-databases.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Bar graph of the infant mortality in America over the past years&quot;</span>, </span>
-<span id="cb37-7"><a href="relational-databases.html#cb37-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;infant mortality&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="relational-databases.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Include the third plot</span></span>
-<span id="cb38-2"><a href="relational-databases.html#cb38-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
-<span id="cb38-3"><a href="relational-databases.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
-<span id="cb38-4"><a href="relational-databases.html#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_book&quot;</span>,</span>
-<span id="cb38-5"><a href="relational-databases.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_main_files&quot;</span>,</span>
-<span id="cb38-6"><a href="relational-databases.html#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;figure-html&quot;</span>,</span>
-<span id="cb38-7"><a href="relational-databases.html#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Relational_databases_plot3.png&quot;</span></span>
-<span id="cb38-8"><a href="relational-databases.html#cb38-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-9"><a href="relational-databases.html#cb38-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="relational-databases.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot 3, line graph of the dengue data in azia over the years</span></span>
+<span id="cb32-2"><a href="relational-databases.html#cb32-2" aria-hidden="true" tabindex="-1"></a>dengue_America <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(infant_mortality, year)</span>
+<span id="cb32-3"><a href="relational-databases.html#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="relational-databases.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dengue_America) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="relational-databases.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> infant_mortality, <span class="at">fill =</span> year), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span> <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&quot;red&quot;</span>, <span class="at">high=</span><span class="st">&quot;yellow&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="relational-databases.html#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Bar graph of the infant mortality in America over the past years&quot;</span>, </span>
+<span id="cb32-7"><a href="relational-databases.html#cb32-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;infant mortality&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="relational-databases.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Include the third plot</span></span>
+<span id="cb33-2"><a href="relational-databases.html#cb33-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb33-3"><a href="relational-databases.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb33-4"><a href="relational-databases.html#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_book&quot;</span>,</span>
+<span id="cb33-5"><a href="relational-databases.html#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_main_files&quot;</span>,</span>
+<span id="cb33-6"><a href="relational-databases.html#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;figure-html&quot;</span>,</span>
+<span id="cb33-7"><a href="relational-databases.html#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Relational_databases_plot3.png&quot;</span></span>
+<span id="cb33-8"><a href="relational-databases.html#cb33-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-9"><a href="relational-databases.html#cb33-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="_book/_main_files/figure-html/Relational_databases_plot3.png" width="672" /></p>
 
 </div>
