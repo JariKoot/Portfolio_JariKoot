@@ -24,7 +24,7 @@
 <meta name="author" content="Jari Koot" />
 
 
-<meta name="date" content="2021-08-19" />
+<meta name="date" content="2021-08-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -364,24 +364,54 @@ The combined dataframe is already in R (called data_all_tables)</p>
 <span id="cb33-14"><a href="relational-databases.html#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Boxplot of the life expectancy in Brazil, Mexico and Bolivia&quot;</span>,</span>
 <span id="cb33-15"><a href="relational-databases.html#cb33-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;life expectancy&quot;</span>,</span>
 <span id="cb33-16"><a href="relational-databases.html#cb33-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="relational-databases.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot 2, show the flu data over the past few years in the continent America</span></span>
-<span id="cb34-2"><a href="relational-databases.html#cb34-2" aria-hidden="true" tabindex="-1"></a>flu_america <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value.x, year)</span>
-<span id="cb34-3"><a href="relational-databases.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="relational-databases.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>flu_america) <span class="sc">+</span></span>
-<span id="cb34-5"><a href="relational-databases.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value.x, <span class="at">fill =</span> year), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb34-6"><a href="relational-databases.html#cb34-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Bar graph of the flu data over the years in America&quot;</span>,</span>
-<span id="cb34-7"><a href="relational-databases.html#cb34-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="relational-databases.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot 3, line graph of the dengue data in azia over the years</span></span>
-<span id="cb35-2"><a href="relational-databases.html#cb35-2" aria-hidden="true" tabindex="-1"></a>dengue_America <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(infant_mortality, year)</span>
+<p>To show you the plots I made without sharing you my password, I have include the plots via knitr.</p>
+<p>Below you can find the 3 plots I have created with ggplot. In the <strong>first plot</strong> you will see a boxplot of the Life expectancy in Brazil, Mexico and Bolivia.
+In the <strong>second plot</strong> you see a bar graph of the flu data over the years in America.
+In the <strong>third plot</strong> you see a bar graph of the infant mortality in America over the past few years</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="relational-databases.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Include the first plot</span></span>
+<span id="cb34-2"><a href="relational-databases.html#cb34-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb34-3"><a href="relational-databases.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb34-4"><a href="relational-databases.html#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_book&quot;</span>,</span>
+<span id="cb34-5"><a href="relational-databases.html#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_main_files&quot;</span>,</span>
+<span id="cb34-6"><a href="relational-databases.html#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;figure-html&quot;</span>,</span>
+<span id="cb34-7"><a href="relational-databases.html#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Relational_databases_plot1.png&quot;</span></span>
+<span id="cb34-8"><a href="relational-databases.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-9"><a href="relational-databases.html#cb34-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_book/_main_files/figure-html/Relational_databases_plot1.png" width="672" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="relational-databases.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot 2, show the flu data over the past few years in the continent America</span></span>
+<span id="cb35-2"><a href="relational-databases.html#cb35-2" aria-hidden="true" tabindex="-1"></a>flu_america <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value.x, year)</span>
 <span id="cb35-3"><a href="relational-databases.html#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="relational-databases.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dengue_America) <span class="sc">+</span></span>
-<span id="cb35-5"><a href="relational-databases.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> infant_mortality, <span class="at">fill =</span> year), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span> <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&quot;red&quot;</span>, <span class="at">high=</span><span class="st">&quot;yellow&quot;</span>) <span class="sc">+</span></span>
-<span id="cb35-6"><a href="relational-databases.html#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Bar graph of the infant mortality in America over the past years&quot;</span>, </span>
-<span id="cb35-7"><a href="relational-databases.html#cb35-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;infant mortality&quot;</span>)</span></code></pre></div>
-<hr />
-<p>Here you can see 3 plots (if you connected Rstudio to PostgreSQL) made with ggplot. In the first plot you will see a boxplot of the Life expectancy in Brazil, Maxico and Bolivia.
-In the second plot you see a bar graph of the flu data over the years in America.
-In the third plot you see a bar graph of the infant mortality in America over the past few years</p>
+<span id="cb35-4"><a href="relational-databases.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>flu_america) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="relational-databases.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value.x, <span class="at">fill =</span> year), <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="relational-databases.html#cb35-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Bar graph of the flu data over the years in America&quot;</span>,</span>
+<span id="cb35-7"><a href="relational-databases.html#cb35-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="relational-databases.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Include the second plot</span></span>
+<span id="cb36-2"><a href="relational-databases.html#cb36-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb36-3"><a href="relational-databases.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb36-4"><a href="relational-databases.html#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_book&quot;</span>,</span>
+<span id="cb36-5"><a href="relational-databases.html#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_main_files&quot;</span>,</span>
+<span id="cb36-6"><a href="relational-databases.html#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;figure-html&quot;</span>,</span>
+<span id="cb36-7"><a href="relational-databases.html#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Relational_databases_plot2.png&quot;</span></span>
+<span id="cb36-8"><a href="relational-databases.html#cb36-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-9"><a href="relational-databases.html#cb36-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_book/_main_files/figure-html/Relational_databases_plot2.png" width="672" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="relational-databases.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot 3, line graph of the dengue data in azia over the years</span></span>
+<span id="cb37-2"><a href="relational-databases.html#cb37-2" aria-hidden="true" tabindex="-1"></a>dengue_America <span class="ot">&lt;-</span> data_all_tables <span class="sc">%&gt;%</span> <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Americas&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(infant_mortality, year)</span>
+<span id="cb37-3"><a href="relational-databases.html#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="relational-databases.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dengue_America) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="relational-databases.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> infant_mortality, <span class="at">fill =</span> year), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span> <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&quot;red&quot;</span>, <span class="at">high=</span><span class="st">&quot;yellow&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="relational-databases.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Bar graph of the infant mortality in America over the past years&quot;</span>, </span>
+<span id="cb37-7"><a href="relational-databases.html#cb37-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;infant mortality&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="relational-databases.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Include the third plot</span></span>
+<span id="cb38-2"><a href="relational-databases.html#cb38-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb38-3"><a href="relational-databases.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb38-4"><a href="relational-databases.html#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_book&quot;</span>,</span>
+<span id="cb38-5"><a href="relational-databases.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_main_files&quot;</span>,</span>
+<span id="cb38-6"><a href="relational-databases.html#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;figure-html&quot;</span>,</span>
+<span id="cb38-7"><a href="relational-databases.html#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Relational_databases_plot3.png&quot;</span></span>
+<span id="cb38-8"><a href="relational-databases.html#cb38-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-9"><a href="relational-databases.html#cb38-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_book/_main_files/figure-html/Relational_databases_plot3.png" width="672" /></p>
 
 </div>
             </section>

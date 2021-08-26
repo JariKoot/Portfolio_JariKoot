@@ -227,6 +227,24 @@ ggplot(data_3_countries, aes(x = country, y = life_expectancy)) +
        x = "")
 ```
 
+To show you the plots I made without sharing you my password, I have include the plots via knitr.
+
+Below you can find the 3 plots I have created with ggplot. In the __first plot__ you will see a boxplot of the Life expectancy in Brazil, Mexico and Bolivia.
+In the __second plot__ you see a bar graph of the flu data over the years in America.
+In the __third plot__ you see a bar graph of the infant mortality in America over the past few years
+
+```{r Relational databases, image Plot 1}
+#Include the first plot
+knitr::include_graphics(
+  here::here(
+    "_book",
+    "_main_files",
+    "figure-html",
+    "Relational_databases_plot1.png"
+  )
+)
+```
+
 ```{r Relational databases M, plot 2, eval=FALSE}
 #plot 2, show the flu data over the past few years in the continent America
 flu_america <- data_all_tables %>% filter(continent == "Americas") %>% select(value.x, year)
@@ -235,6 +253,18 @@ ggplot(data=flu_america) +
   geom_col(aes(x = year, y = value.x, fill = year), show.legend = FALSE) +
            labs(title = "Bar graph of the flu data over the years in America",
                 y = "")
+```
+
+```{r Relational databases, image Plot 2}
+#Include the second plot
+knitr::include_graphics(
+  here::here(
+    "_book",
+    "_main_files",
+    "figure-html",
+    "Relational_databases_plot2.png"
+  )
+)
 ```
 
 ```{r Relational databases M, plot 3, eval=FALSE}
@@ -247,8 +277,17 @@ ggplot(data = dengue_America) +
        y = "infant mortality")
 
 ```
-***
 
-Here you can see 3 plots (if you connected Rstudio to PostgreSQL) made with ggplot. In the first plot you will see a boxplot of the Life expectancy in Brazil, Maxico and Bolivia.
-In the second plot you see a bar graph of the flu data over the years in America.
-In the third plot you see a bar graph of the infant mortality in America over the past few years
+```{r Relational databases, image Plot 3}
+#Include the third plot
+knitr::include_graphics(
+  here::here(
+    "_book",
+    "_main_files",
+    "figure-html",
+    "Relational_databases_plot3.png"
+  )
+)
+```
+
+

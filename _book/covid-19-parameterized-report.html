@@ -24,7 +24,7 @@
 <meta name="author" content="Jari Koot" />
 
 
-<meta name="date" content="2021-08-19" />
+<meta name="date" content="2021-08-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -200,41 +200,41 @@ In this exercise I will create a parameterized report of COVID-19 cases and deat
 The params can be filled in in the index.Rmd. the first date that can be used is 2-3-2021.
 <br>
 If you change a param type this in the console:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="covid-19-parameterized-report.html#cb36-1" aria-hidden="true" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">render_book</span>(<span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="covid-19-parameterized-report.html#cb39-1" aria-hidden="true" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">render_book</span>(<span class="st">&quot;.&quot;</span>)</span></code></pre></div>
 <p>This makes it so that the .html files are reload and the params will be correct fully implemented</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="covid-19-parameterized-report.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set this option in the first code chunk</span></span>
-<span id="cb37-2"><a href="covid-19-parameterized-report.html#cb37-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> params<span class="sc">$</span>printcode)</span>
-<span id="cb37-3"><a href="covid-19-parameterized-report.html#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="covid-19-parameterized-report.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Loading the data given by a param </span></span>
-<span id="cb37-5"><a href="covid-19-parameterized-report.html#cb37-5" aria-hidden="true" tabindex="-1"></a>COVID_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(params<span class="sc">$</span>data)</span>
-<span id="cb37-6"><a href="covid-19-parameterized-report.html#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-7"><a href="covid-19-parameterized-report.html#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co">#filter on country given by a param</span></span>
-<span id="cb37-8"><a href="covid-19-parameterized-report.html#cb37-8" aria-hidden="true" tabindex="-1"></a>COVID_country <span class="ot">&lt;-</span> COVID_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country)</span>
-<span id="cb37-9"><a href="covid-19-parameterized-report.html#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-10"><a href="covid-19-parameterized-report.html#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co">#getting the rownumber of the given params (day, month, year)</span></span>
-<span id="cb37-11"><a href="covid-19-parameterized-report.html#cb37-11" aria-hidden="true" tabindex="-1"></a>row_number <span class="ot">&lt;-</span> <span class="fu">which</span>((COVID_country<span class="sc">$</span>day <span class="sc">==</span> params<span class="sc">$</span>day) <span class="sc">&amp;</span> (COVID_country<span class="sc">$</span>month <span class="sc">==</span> params<span class="sc">$</span>month) <span class="sc">&amp;</span> (COVID_country<span class="sc">$</span>year <span class="sc">==</span> params<span class="sc">$</span>year))</span>
-<span id="cb37-12"><a href="covid-19-parameterized-report.html#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-13"><a href="covid-19-parameterized-report.html#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter the COVID_country from the first line to row_number</span></span>
-<span id="cb37-14"><a href="covid-19-parameterized-report.html#cb37-14" aria-hidden="true" tabindex="-1"></a>COVID_filter <span class="ot">&lt;-</span> COVID_country[<span class="dv">1</span><span class="sc">:</span>row_number, ]</span>
-<span id="cb37-15"><a href="covid-19-parameterized-report.html#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-16"><a href="covid-19-parameterized-report.html#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="co">#replace date column to date class</span></span>
-<span id="cb37-17"><a href="covid-19-parameterized-report.html#cb37-17" aria-hidden="true" tabindex="-1"></a>COVID_filter<span class="sc">$</span>dateRep <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(COVID_filter<span class="sc">$</span>dateRep,</span>
-<span id="cb37-18"><a href="covid-19-parameterized-report.html#cb37-18" aria-hidden="true" tabindex="-1"></a>                                <span class="at">format =</span> <span class="st">&quot;%d/%m/%y&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="covid-19-parameterized-report.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a variable with the country name</span></span>
-<span id="cb38-2"><a href="covid-19-parameterized-report.html#cb38-2" aria-hidden="true" tabindex="-1"></a>country <span class="ot">&lt;-</span> params<span class="sc">$</span>country</span>
-<span id="cb38-3"><a href="covid-19-parameterized-report.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting the graph</span></span>
-<span id="cb38-4"><a href="covid-19-parameterized-report.html#cb38-4" aria-hidden="true" tabindex="-1"></a>COVID_filter <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb38-5"><a href="covid-19-parameterized-report.html#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> dateRep, <span class="at">y =</span> cases), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb38-6"><a href="covid-19-parameterized-report.html#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb38-7"><a href="covid-19-parameterized-report.html#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;recorded COVID-19 cases in&quot;</span>, country),</span>
-<span id="cb38-8"><a href="covid-19-parameterized-report.html#cb38-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="covid-19-parameterized-report.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set this option in the first code chunk</span></span>
+<span id="cb40-2"><a href="covid-19-parameterized-report.html#cb40-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> params<span class="sc">$</span>printcode)</span>
+<span id="cb40-3"><a href="covid-19-parameterized-report.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="covid-19-parameterized-report.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Loading the data given by a param </span></span>
+<span id="cb40-5"><a href="covid-19-parameterized-report.html#cb40-5" aria-hidden="true" tabindex="-1"></a>COVID_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(params<span class="sc">$</span>data)</span>
+<span id="cb40-6"><a href="covid-19-parameterized-report.html#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="covid-19-parameterized-report.html#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co">#filter on country given by a param</span></span>
+<span id="cb40-8"><a href="covid-19-parameterized-report.html#cb40-8" aria-hidden="true" tabindex="-1"></a>COVID_country <span class="ot">&lt;-</span> COVID_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(countriesAndTerritories <span class="sc">==</span> params<span class="sc">$</span>country)</span>
+<span id="cb40-9"><a href="covid-19-parameterized-report.html#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="covid-19-parameterized-report.html#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co">#getting the rownumber of the given params (day, month, year)</span></span>
+<span id="cb40-11"><a href="covid-19-parameterized-report.html#cb40-11" aria-hidden="true" tabindex="-1"></a>row_number <span class="ot">&lt;-</span> <span class="fu">which</span>((COVID_country<span class="sc">$</span>day <span class="sc">==</span> params<span class="sc">$</span>day) <span class="sc">&amp;</span> (COVID_country<span class="sc">$</span>month <span class="sc">==</span> params<span class="sc">$</span>month) <span class="sc">&amp;</span> (COVID_country<span class="sc">$</span>year <span class="sc">==</span> params<span class="sc">$</span>year))</span>
+<span id="cb40-12"><a href="covid-19-parameterized-report.html#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-13"><a href="covid-19-parameterized-report.html#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter the COVID_country from the first line to row_number</span></span>
+<span id="cb40-14"><a href="covid-19-parameterized-report.html#cb40-14" aria-hidden="true" tabindex="-1"></a>COVID_filter <span class="ot">&lt;-</span> COVID_country[<span class="dv">1</span><span class="sc">:</span>row_number, ]</span>
+<span id="cb40-15"><a href="covid-19-parameterized-report.html#cb40-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-16"><a href="covid-19-parameterized-report.html#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="co">#replace date column to date class</span></span>
+<span id="cb40-17"><a href="covid-19-parameterized-report.html#cb40-17" aria-hidden="true" tabindex="-1"></a>COVID_filter<span class="sc">$</span>dateRep <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(COVID_filter<span class="sc">$</span>dateRep,</span>
+<span id="cb40-18"><a href="covid-19-parameterized-report.html#cb40-18" aria-hidden="true" tabindex="-1"></a>                                <span class="at">format =</span> <span class="st">&quot;%d/%m/%y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="covid-19-parameterized-report.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a variable with the country name</span></span>
+<span id="cb41-2"><a href="covid-19-parameterized-report.html#cb41-2" aria-hidden="true" tabindex="-1"></a>country <span class="ot">&lt;-</span> params<span class="sc">$</span>country</span>
+<span id="cb41-3"><a href="covid-19-parameterized-report.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting the graph</span></span>
+<span id="cb41-4"><a href="covid-19-parameterized-report.html#cb41-4" aria-hidden="true" tabindex="-1"></a>COVID_filter <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb41-5"><a href="covid-19-parameterized-report.html#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> dateRep, <span class="at">y =</span> cases), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-6"><a href="covid-19-parameterized-report.html#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb41-7"><a href="covid-19-parameterized-report.html#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;recorded COVID-19 cases in&quot;</span>, country),</span>
+<span id="cb41-8"><a href="covid-19-parameterized-report.html#cb41-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/covid%20cases-1.png" width="672" /></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="covid-19-parameterized-report.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting the graph</span></span>
-<span id="cb39-2"><a href="covid-19-parameterized-report.html#cb39-2" aria-hidden="true" tabindex="-1"></a>COVID_filter <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb39-3"><a href="covid-19-parameterized-report.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> dateRep, <span class="at">y =</span> deaths), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb39-4"><a href="covid-19-parameterized-report.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb39-5"><a href="covid-19-parameterized-report.html#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Recorded COVID-19 deaths in&quot;</span>, country),</span>
-<span id="cb39-6"><a href="covid-19-parameterized-report.html#cb39-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="covid-19-parameterized-report.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting the graph</span></span>
+<span id="cb42-2"><a href="covid-19-parameterized-report.html#cb42-2" aria-hidden="true" tabindex="-1"></a>COVID_filter <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb42-3"><a href="covid-19-parameterized-report.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> dateRep, <span class="at">y =</span> deaths), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="covid-19-parameterized-report.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb42-5"><a href="covid-19-parameterized-report.html#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Recorded COVID-19 deaths in&quot;</span>, country),</span>
+<span id="cb42-6"><a href="covid-19-parameterized-report.html#cb42-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/covid%20deaths-1.png" width="672" /></p>
 
 </div>
