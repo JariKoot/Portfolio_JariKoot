@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title># New skills | Portofolio Book</title>
-  <meta name="description" content="# New skills | Portofolio Book" />
+  <title>Page not found | Portofolio Book</title>
+  <meta name="description" content="Page not found | Portofolio Book" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="# New skills | Portofolio Book" />
+  <meta property="og:title" content="Page not found | Portofolio Book" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="# New skills | Portofolio Book" />
+  <meta name="twitter:title" content="Page not found | Portofolio Book" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="looking-ahead.html"/>
-<link rel="next" href="relational-databases.html"/>
+
+
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -181,69 +181,19 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="new-skills" class="section level1 unnumbered">
-<h1># New skills</h1>
-<blockquote>
-<p><strong>Project skills</strong></p>
-</blockquote>
-<p><br>
-In the previous chapters I explained the new skills that I have learned during my minor courses. In this chapter I show you the skills that I have learned during my project and tell you my future plans.
-<br><br>
-The project I have worked on is called the Waternet project, commisioned by Waternet.It’s aim is to get insight in the bacterial composition of Waternet’s water, before and after the filtering steps.
-The project was initially handled by a group of microbiology students. Both mock solutions and samples were used for determination, the latter as a control on the determination process.
-After concluding they had insufficient resources to properly determine the composition of the samples, the samples were sent to a company that performed whole genome sequencing on them.
-This sequencing technique is starting to become a widely used method in clinical diagnostics and general microbial research <span class="citation">(Gautam et al. 2019)</span>. In the field of microbial water quality testing, detection methods that target nucleic acids have expanded the view on the microbial world <span class="citation">(Vierheilig et al. 2015)</span>.
-<br><br>
-As a continuation of this project, a group of data science students (our project group: Shervin, Jari, Irene) were assigned the task of coming up with a way of determining the bacterial composition of both samples, based on the WGS data. We did this by using multiple packages in Rstudio. The main determination package was BLAST+. This software package is a good choice for working with long database sequences<span class="citation">(Camacho et al. 2009)</span>.We used this package to search genetic sequence data bases with the Bioconductor infrastructure. After that we used kSNP3 SNP detection and phylogenetic analysis of genomes without a reference genome to determine the composition of the Waternet samples <span class="citation">(Shea N. Gardner, Slezak, and Hall 2015; Shea N. Gardner and Hall 2013)</span></p>
-<blockquote>
-<p><strong>Spend my time comming weeks</strong></p>
-</blockquote>
-<p><br>
-Besides the things that I have already learned we will also be taking a look into the future. The goal is to learn a new skill in 4 days of self study, I decided to divide my 4 days in to 2x2 days to learn the following skills:</p>
-<ul>
-<li>Microbiota analysis (<a href="https://rstudio-pubs-static.s3.amazonaws.com/268156_d3ea37937f4f4469839ab6fa2c483842.html#other_visualizations">link to the workflow</a>)</li>
-<li>Shiny (<a href="https://mastering-shiny.org/basic-app.html">link to the workflow</a>)
-<br></li>
-</ul>
-<p>I came up with an assignment to test my newly learned skills, the assignment is to analyse a dataset (this dataset is from my last project) and apply some plots on the samples. After that I make the plots visible in a Shiny app. In the app I will ask for 3 different inputs that the user can adjust.
-<br></p>
-<hr />
-<blockquote>
-<p><strong>Microbiota analysis</strong></p>
-</blockquote>
-<p>The goal of this workflow is to learn basic analyses of microbiota data to determine if and how communities differ by variables of interest. This pipeline can be used for any microbiota dataset that has been clustered into operational taxonomic units: OTU’s. All the resultes, code and pipeline are documented in the file: code/Microbiota_analysis.R. In this workflow I will learn about alpha and beta-diversity between and within groups. After that there are different kind of graphs introduced (Abundance plots, heat maps, etc.).
-<br></p>
-<hr />
-<blockquote>
-<p><strong>Shiny</strong></p>
-</blockquote>
-<p>The second skill I will learn about is Shiny. Shiny is a package that can be installed in Rstudio, it makes it easy to build interactive web apps straight from Rstudio. To show the plots you created in a project it is important that the figures are interpreted clearly and comprehensibly. Shiny gives you the opportunity to do this in an app with interactive plots. My goal of this workflow is to learn the basics of Shiny and make a small app that shows you the results of my last project in an interactive way. Below I will give you a quick introduction of my last project.
-<br></p>
-<hr />
-<blockquote>
-<p><strong>Summary of my last project</strong></p>
-</blockquote>
-<p>The data used in this workflow is from my last project. Here is a short summary of the project:</p>
-<p><em>The Waternet project is a project commissioned by Waternet. It’s aim is to get insight in the bacterial composition of Waternet’s water, before and after filtering. The project was initially handled by a group op microbiology students. Both mock solutions and samples were used for determination, the latter as a control on the determination process. After concluding they had insufficient resources to properly determine the composition of the samples, the samples were sent to a company that performed whole genome sequencing on them. As a continuation of this project, a group of data science students (us) were assigned the task of coming up with a way of determining the bacterial composition of both samples, based on the WGS data.</em></p>
-<p><strong>For more information about the project visit our <a href="https://github.com/ProjecticumDataScience/Project-1-Waternet">GitHub</a> page.</strong>
-<br><br>
-The samples I am going to analyse are the first 10 000 reads of the pre and post sample (this will be ajustable via the interface). I am gonna visualize them in different ways so that the data will be understandable to interpret. If you are working with Shiny it’s a good idea to start with a sketch. In the image below you can see mine.
-<br></p>
-<p><img src="images/shiny_sketch.jpg" width="400px" height="600px" /></p>
-<hr />
-<blockquote>
-<p><strong>Shiny app</strong></p>
-</blockquote>
-<p>I decided to put both samples (pre and post) next to eachother in the app, so that you will get a quick overview what is different in each sample. I also made use of tabs so that the table and plots are not on the same page. This makes it easier to view the data. To start the app you need to open the file <em>app/waternet_app.R</em> and press on the button: <em>Run App</em>. The app is best viewed in full screen.</p>
-
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="looking-ahead.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="relational-databases.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

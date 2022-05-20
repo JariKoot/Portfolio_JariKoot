@@ -1,10 +1,27 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # New skills{-}
 ================================================================================
+>__Project skills__ 
+ 
+<br>
+In the previous chapters I explained the new skills that I have learned during my minor courses. In this chapter I show you the skills that I have learned during my project and tell you my future plans.
+<br><br>
+The project I have worked on is called the Waternet project, commisioned by Waternet.It's aim is to get insight in the bacterial composition of Waternet's water, before and after the filtering steps. 
+The project was initially handled by a group of microbiology students. Both mock solutions and samples were used for determination, the latter as a control on the determination process.
+After concluding they had insufficient resources to properly determine the composition of the samples, the samples were sent to a company that performed whole genome sequencing on them. 
+This sequencing technique is starting to become a widely used method in clinical diagnostics and general microbial research [@gautamStepbystepBeginner2019]. In the field of microbial water quality testing, detection methods that target nucleic acids have expanded the view on the microbial world [@vierheiligPotentialApplicationsNext2015].
+<br><br> 
+As a continuation of this project, a group of data science students (our project group: Shervin, Jari, Irene) were assigned the task of coming up with a way of determining the bacterial composition of both samples, based on the WGS data. We did this by using multiple packages in Rstudio. The main determination package was BLAST+. This software package is a good choice for working with long database sequences[@camachoBLASTArchitectureApplications2009].We used this package to search genetic sequence data bases with the Bioconductor infrastructure. After that we used kSNP3 SNP detection and phylogenetic analysis of genomes without a reference genome to determine the composition of the Waternet samples [@gardnerKSNP3SNPDetection2015; @gardnerWhenWholeGenomeAlignments2013]
 
->__About the exercise__
+
+>__Spend my time comming weeks__
 
 <br>
-In this Rmarkdown file I will explain the new skills I learned (this is mentioned in the previous chapter). The goal is to learn a new skill in 4 days of self study, I decided to divide my 4 days in to 2x2 days to learn the following skills:
+Besides the things that I have already learned we will also be taking a look into the future. The goal is to learn a new skill in 4 days of self study, I decided to divide my 4 days in to 2x2 days to learn the following skills:
 
 - Microbiota analysis         ([link to the workflow](https://rstudio-pubs-static.s3.amazonaws.com/268156_d3ea37937f4f4469839ab6fa2c483842.html#other_visualizations))
 - Shiny                      ([link to the workflow](https://mastering-shiny.org/basic-app.html))

@@ -1,0 +1,286 @@
+[
+	{
+		"id": "gautamStepbystepBeginner2019",
+		"type": "article-journal",
+		"abstract": "Bacterial whole genome sequencing (WGS) is becoming a widely-used technique in research, clinical diagnostic, and public health laboratories. It enables high resolution characterization of bacterial pathogens in terms of properties that include antibiotic resistance, molecular epidemiology, and virulence. The introduction of next-generation sequencing instrumentation has made WGS attainable in terms of costs. However, the lack of a beginner’s protocol for WGS still represents a barrier to its adoption in some settings. Here, we present detailed step-by-step methods for obtaining WGS data from a range of different bacteria (Gram-positive, Gram-negative, and acid-fast) using the Illumina platform. Modifications have been performed with respect to DNA extraction and library normalization to maximize the output from the laboratory consumables invested. The protocol represents a simplified and reproducible method for producing high quality sequencing data. The key advantages of this protocol include: simplicity of the protocol for users with no prior genome sequencing experience and reproducibility of the protocol across a wide range of bacteria.",
+		"container-title": "Journal of Biological Methods",
+		"DOI": "10.14440/jbm.2019.276",
+		"ISSN": "2326-9901",
+		"issue": "1",
+		"journalAbbreviation": "J Biol Methods",
+		"language": "en",
+		"page": "e110",
+		"source": "DOI.org (Crossref)",
+		"title": "A step-by-step beginner",
+		"URL": "https://jbmethods.org/jbm/article/view/276",
+		"volume": "6",
+		"author": [
+			{
+				"family": "Gautam",
+				"given": "Sanjay S."
+			},
+			{
+				"family": "Kc",
+				"given": "Rajendra"
+			},
+			{
+				"family": "Leong",
+				"given": "Kelvin WC"
+			},
+			{
+				"family": "Mac Aogáin",
+				"given": "Micheál"
+			},
+			{
+				"family": "O'Toole",
+				"given": "Ronan F."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2019",
+					3,
+					15
+				]
+			]
+		},
+		"citation-key": "gautamStepbystepBeginner2019"
+	},
+	{
+		"id": "camachoBLASTArchitectureApplications2009",
+		"type": "article-journal",
+		"abstract": "Background: Sequence similarity searching is a very important bioinformatics task. While Basic Local Alignment Search Tool (BLAST) outperforms exact methods through its use of heuristics, the speed of the current BLAST software is suboptimal for very long queries or database sequences. There are also some shortcomings in the user-interface of the current command-line applications.\nResults: We describe features and improvements of rewritten BLAST software and introduce new command-line applications. Long query sequences are broken into chunks for processing, in some cases leading to dramatically shorter run times. For long database sequences, it is possible to retrieve only the relevant parts of the sequence, reducing CPU time and memory usage for searches of short queries against databases of contigs or chromosomes. The program can now retrieve masking information for database sequences from the BLAST databases. A new modular software library can now access subject sequence data from arbitrary data sources. We introduce several new features, including strategy files that allow a user to save and reuse their favorite set of options. The strategy files can be uploaded to and downloaded from the NCBI BLAST web site.\nConclusion: The new BLAST command-line applications, compared to the current BLAST tools, demonstrate substantial speed improvements for long queries as well as chromosome length database sequences. We have also improved the user interface of the command-line applications.",
+		"container-title": "BMC Bioinformatics",
+		"DOI": "10.1186/1471-2105-10-421",
+		"ISSN": "1471-2105",
+		"issue": "1",
+		"journalAbbreviation": "BMC Bioinformatics",
+		"language": "en",
+		"page": "421",
+		"source": "DOI.org (Crossref)",
+		"title": "BLAST+: architecture and applications",
+		"title-short": "BLAST+",
+		"URL": "https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-10-421",
+		"volume": "10",
+		"author": [
+			{
+				"family": "Camacho",
+				"given": "Christiam"
+			},
+			{
+				"family": "Coulouris",
+				"given": "George"
+			},
+			{
+				"family": "Avagyan",
+				"given": "Vahram"
+			},
+			{
+				"family": "Ma",
+				"given": "Ning"
+			},
+			{
+				"family": "Papadopoulos",
+				"given": "Jason"
+			},
+			{
+				"family": "Bealer",
+				"given": "Kevin"
+			},
+			{
+				"family": "Madden",
+				"given": "Thomas L"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2009",
+					12
+				]
+			]
+		},
+		"citation-key": "camachoBLASTArchitectureApplications2009"
+	},
+	{
+		"id": "gardnerKSNP3SNPDetection2015",
+		"type": "article-journal",
+		"abstract": "Summary:We announce the release of kSNP3.0, a program for SNP identiﬁcation and phylogenetic analysis without genome alignment or the requirement for reference genomes. kSNP3.0 is a signiﬁcantly improved version of kSNP v2.",
+		"container-title": "Bioinformatics",
+		"DOI": "10.1093/bioinformatics/btv271",
+		"ISSN": "1367-4803, 1460-2059",
+		"issue": "17",
+		"journalAbbreviation": "Bioinformatics",
+		"language": "en",
+		"page": "2877-2878",
+		"source": "DOI.org (Crossref)",
+		"title": "kSNP3.0: SNP detection and phylogenetic analysis of genomes without genome alignment or reference genome: Table 1",
+		"title-short": "kSNP3.0",
+		"URL": "https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btv271",
+		"volume": "31",
+		"author": [
+			{
+				"family": "Gardner",
+				"given": "Shea N"
+			},
+			{
+				"family": "Slezak",
+				"given": "Tom"
+			},
+			{
+				"family": "Hall",
+				"given": "Barry G."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2015",
+					9,
+					1
+				]
+			]
+		},
+		"citation-key": "gardnerKSNP3SNPDetection2015"
+	},
+	{
+		"id": "vierheiligPotentialApplicationsNext2015",
+		"type": "article-journal",
+		"abstract": "The applicability of next generation DNA sequencing (NGS) methods for water quality assessment has so far not been broadly investigated. This study set out to evaluate the potential of an NGS-based approach in a complex catchment with importance for drinking water abstraction. In this multi-compartment investigation, total bacterial communities in water, faeces, soil, and sediment samples were investigated by 454 pyrosequencing of bacterial 16S rRNA gene amplicons to assess the capabilities of this NGS method for (i) the development and evaluation of environmental molecular diagnostics, (ii) direct screening of the bulk bacterial communities, and (iii) the detection of faecal pollution in water. Results indicate that NGS methods can highlight potential target populations for diagnostics and will prove useful for the evaluation of existing and the development of novel DNA-based detection methods in the field of water microbiology. The used approach allowed unveiling of dominant bacterial populations but failed to detect populations with low abundances such as faecal indicators in surface waters. In combination with metadata, NGS data will also allow the identification of drivers of bacterial community composition during water treatment and distribution, highlighting the power of this approach for monitoring of bacterial regrowth and contamination in technical systems.",
+		"container-title": "Water Science and Technology",
+		"DOI": "10.2166/wst.2015.407",
+		"ISSN": "0273-1223, 1996-9732",
+		"issue": "11",
+		"language": "en",
+		"page": "1962-1972",
+		"source": "DOI.org (Crossref)",
+		"title": "Potential applications of next generation DNA sequencing of 16S rRNA gene amplicons in microbial water quality monitoring",
+		"URL": "https://iwaponline.com/wst/article/72/11/1962/19281/Potential-applications-of-next-generation-DNA",
+		"volume": "72",
+		"author": [
+			{
+				"family": "Vierheilig",
+				"given": "J."
+			},
+			{
+				"family": "Savio",
+				"given": "D."
+			},
+			{
+				"family": "Ley",
+				"given": "R. E."
+			},
+			{
+				"family": "Mach",
+				"given": "R. L."
+			},
+			{
+				"family": "Farnleitner",
+				"given": "A. H."
+			},
+			{
+				"family": "Reischer",
+				"given": "G. H."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2015",
+					12,
+					1
+				]
+			]
+		},
+		"citation-key": "vierheiligPotentialApplicationsNext2015"
+	},
+	{
+		"id": "gardnerWhenWholeGenomeAlignments2013",
+		"type": "article-journal",
+		"abstract": "Effective use of rapid and inexpensive whole genome sequencing for microbes requires fast, memory efficient bioinformatics tools for sequence comparison. The kSNP v2 software finds single nucleotide polymorphisms (SNPs) in whole genome data. kSNP v2 has numerous improvements over kSNP v1 including SNP gene annotation; better scaling for draft genomes available as assembled contigs or raw, unassembled reads; a tool to identify the optimal value of k; distribution of packages of executables for Linux and Mac OS X for ease of installation and user-friendly use; and a detailed User Guide. SNP discovery is based on k-mer analysis, and requires no multiple sequence alignment or the selection of a single reference genome. Most target sets with hundreds of genomes complete in minutes to hours. SNP phylogenies are built by maximum likelihood, parsimony, and distance, based on all SNPs, only core SNPs, or SNPs present in some intermediate user-specified fraction of targets. The SNP-based trees that result are consistent with known taxonomy. kSNP v2 can handle many gigabases of sequence in a single run, and if one or more annotated genomes are included in the target set, SNPs are annotated with protein coding and other information (UTRs, etc.) from Genbank file(s). We demonstrate application of kSNP v2 on sets of viral and bacterial genomes, and discuss in detail analysis of a set of 68 finished E. coli and Shigella genomes and a set of the same genomes to which have been added 47 assemblies and four ‘‘raw read’’ genomes of H104:H4 strains from the recent European E. coli outbreak that resulted in both bloody diarrhea and hemolytic uremic syndrome (HUS), and caused at least 50 deaths.",
+		"container-title": "PLoS ONE",
+		"DOI": "10.1371/journal.pone.0081760",
+		"ISSN": "1932-6203",
+		"issue": "12",
+		"journalAbbreviation": "PLoS ONE",
+		"language": "en",
+		"page": "e81760",
+		"source": "DOI.org (Crossref)",
+		"title": "When Whole-Genome Alignments Just Won't Work: kSNP v2 Software for Alignment-Free SNP Discovery and Phylogenetics of Hundreds of Microbial Genomes",
+		"title-short": "When Whole-Genome Alignments Just Won't Work",
+		"URL": "https://dx.plos.org/10.1371/journal.pone.0081760",
+		"volume": "8",
+		"author": [
+			{
+				"family": "Gardner",
+				"given": "Shea N."
+			},
+			{
+				"family": "Hall",
+				"given": "Barry G."
+			}
+		],
+		"editor": [
+			{
+				"family": "Tang",
+				"given": "Haixu"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2022",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2013",
+					12,
+					9
+				]
+			]
+		},
+		"citation-key": "gardnerWhenWholeGenomeAlignments2013"
+	}
+]
