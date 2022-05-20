@@ -17,6 +17,9 @@ This sequencing technique is starting to become a widely used method in clinical
 <br><br> 
 As a continuation of this project, a group of data science students (our project group: Shervin, Jari, Irene) were assigned the task of coming up with a way of determining the bacterial composition of both samples, based on the WGS data. We did this by using multiple packages in Rstudio. The main determination package was BLAST+. This software package is a good choice for working with long database sequences[@camachoBLASTArchitectureApplications2009].We used this package to search genetic sequence data bases with the Bioconductor infrastructure. After that we used kSNP3 SNP detection and phylogenetic analysis of genomes without a reference genome to determine the composition of the Waternet samples [@gardnerKSNP3SNPDetection2015; @gardnerWhenWholeGenomeAlignments2013]
 
+__For more information about the project visit our [GitHub](https://github.com/ProjecticumDataScience/Project-1-Waternet) page.__
+
+***
 
 >__Spend my time comming weeks__
 
@@ -44,18 +47,8 @@ The goal of this workflow is to learn basic analyses of microbiota data to deter
 
 
 The second skill I will learn about is Shiny. Shiny is a package that can be installed in Rstudio, it makes it easy to build interactive web apps straight from Rstudio. To show the plots you created in a project it is important that the figures are interpreted clearly and comprehensibly. Shiny gives you the opportunity to do this in an app with interactive plots. My goal of this workflow is to learn the basics of Shiny and make a small app that shows you the results of my last project in an interactive way. Below I will give you a quick introduction of my last project.
-<br>
 
-***
 
->__Summary of my last project__
-
-The data used in this workflow is from my last project. Here is a short summary of the project:
-
-_The Waternet project is a project commissioned by Waternet. It's aim is to get insight in the bacterial composition of Waternet's water, before and after filtering. The project was initially handled by a group op microbiology students. Both mock solutions and samples were used for determination, the latter as a control on the determination process. After concluding they had insufficient resources to properly determine the composition of the samples, the samples were sent to a company that performed whole genome sequencing on them. As a continuation of this project, a group of data science students (us) were assigned the task of coming up with a way of determining the bacterial composition of both samples, based on the WGS data._
-
-__For more information about the project visit our [GitHub](https://github.com/ProjecticumDataScience/Project-1-Waternet) page.__
-<br><br>
 The samples I am going to analyse are the first 10 000 reads of the pre and post sample (this will be ajustable via the interface). I am gonna visualize them in different ways so that the data will be understandable to interpret. If you are working with Shiny it's a good idea to start with a sketch. In the image below you can see mine.
 <br>
 
