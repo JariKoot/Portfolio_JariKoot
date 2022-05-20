@@ -7,7 +7,6 @@ documentclass: book
 output:
   bookdown::gitbook: default
 new_session: yes
-#bibliography: "r rbbt::bbt_write_bib(”bibliography.json”, overwrite = TRUE)"
 bibliography: "references.json"
 params:
   data: "data/data.csv"
