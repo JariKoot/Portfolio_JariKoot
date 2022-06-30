@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title># Elegans experiment | Portofolio Book</title>
   <meta name="description" content="# Elegans experiment | Portofolio Book" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="# Elegans experiment | Portofolio Book" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jari Koot" />
 
 
-<meta name="date" content="2021-08-26" />
+<meta name="date" content="2022-06-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="review-of-an-article.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -120,6 +120,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 </head>
 
@@ -142,6 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="new-skills.html"><a href="new-skills.html"><i class="fa fa-check"></i># New skills</a></li>
 <li class="chapter" data-level="" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i># Relational databases</a></li>
 <li class="chapter" data-level="" data-path="covid-19-parameterized-report.html"><a href="covid-19-parameterized-report.html"><i class="fa fa-check"></i># COVID-19 parameterized report</a></li>
+<li class="chapter" data-level="" data-path="creating-an-r-package.html"><a href="creating-an-r-package.html"><i class="fa fa-check"></i># Creating an R package</a></li>
 </ul>
 
       </nav>
@@ -180,22 +203,22 @@ In this exercise I have imported a dataset in Rstudio and created a scatterplot.
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="elegans-experiment.html#cb1-1" aria-hidden="true" tabindex="-1"></a>elegans_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">&quot;data_raw/CE.LIQ.FLOW.062_Tidydata.xlsx&quot;</span>))</span>
 <span id="cb1-2"><a href="elegans-experiment.html#cb1-2" aria-hidden="true" tabindex="-1"></a>elegans_data <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 10 x 34
-##    plateRow plateColumn vialNr dropCode expType expReplicate expName expDate             expResearcher expTime expUnit expVolumeCounted RawData
-##    &lt;lgl&gt;    &lt;lgl&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;   &lt;dttm&gt;              &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;
-##  1 NA       NA               1 a        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      44
-##  2 NA       NA               1 b        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      37
-##  3 NA       NA               1 c        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      45
-##  4 NA       NA               1 d        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      47
-##  5 NA       NA               1 e        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      41
-##  6 NA       NA               2 a        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      35
-##  7 NA       NA               2 b        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      41
-##  8 NA       NA               2 c        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      36
-##  9 NA       NA               2 d        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      40
-## 10 NA       NA               2 e        experi~            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50      38
-## # ... with 21 more variables: compCASRN &lt;chr&gt;, compName &lt;chr&gt;, compConcentration &lt;chr&gt;, compUnit &lt;chr&gt;, compDelivery &lt;chr&gt;, compVehicle &lt;chr&gt;,
-## #   elegansStrain &lt;chr&gt;, elegansInput &lt;dbl&gt;, bacterialStrain &lt;chr&gt;, bacterialTreatment &lt;chr&gt;, bacterialOD600 &lt;dbl&gt;, bacterialConcX &lt;dbl&gt;,
-## #   bacterialVolume &lt;dbl&gt;, bacterialVolUnit &lt;chr&gt;, incubationVial &lt;chr&gt;, incubationVolume &lt;dbl&gt;, incubationUnit &lt;chr&gt;, incubationMethod &lt;chr&gt;,
-## #   incubationRPM &lt;dbl&gt;, bubble &lt;lgl&gt;, incubateTemperature &lt;dbl&gt;</code></pre>
+##    plateRow plateColumn vialNr dropCode expType    expReplicate expName expDate             expResearcher expTime expUnit expVolumeCounted
+##    &lt;lgl&gt;    &lt;lgl&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;   &lt;dttm&gt;              &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
+##  1 NA       NA               1 a        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+##  2 NA       NA               1 b        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+##  3 NA       NA               1 c        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+##  4 NA       NA               1 d        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+##  5 NA       NA               1 e        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+##  6 NA       NA               2 a        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+##  7 NA       NA               2 b        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+##  8 NA       NA               2 c        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+##  9 NA       NA               2 d        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+## 10 NA       NA               2 e        experiment            3 CE.LIQ~ 2020-11-30 00:00:00 Sergio Reijn~      68 hour                  50
+## # ... with 22 more variables: RawData &lt;dbl&gt;, compCASRN &lt;chr&gt;, compName &lt;chr&gt;, compConcentration &lt;chr&gt;, compUnit &lt;chr&gt;,
+## #   compDelivery &lt;chr&gt;, compVehicle &lt;chr&gt;, elegansStrain &lt;chr&gt;, elegansInput &lt;dbl&gt;, bacterialStrain &lt;chr&gt;, bacterialTreatment &lt;chr&gt;,
+## #   bacterialOD600 &lt;dbl&gt;, bacterialConcX &lt;dbl&gt;, bacterialVolume &lt;dbl&gt;, bacterialVolUnit &lt;chr&gt;, incubationVial &lt;chr&gt;,
+## #   incubationVolume &lt;dbl&gt;, incubationUnit &lt;chr&gt;, incubationMethod &lt;chr&gt;, incubationRPM &lt;dbl&gt;, bubble &lt;lgl&gt;, incubateTemperature &lt;dbl&gt;</code></pre>
 <hr />
 <blockquote>
 <p><strong>C</strong></p>
@@ -301,7 +324,6 @@ In this exercise I have imported a dataset in Rstudio and created a scatterplot.
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -341,6 +363,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title># Guerrilla analytics | Portofolio Book</title>
   <meta name="description" content="# Guerrilla analytics | Portofolio Book" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="# Guerrilla analytics | Portofolio Book" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jari Koot" />
 
 
-<meta name="date" content="2021-08-26" />
+<meta name="date" content="2022-06-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="review-of-an-article.html"/>
 <link rel="next" href="jaris-cv.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -42,7 +43,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -120,6 +120,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 </head>
 
@@ -142,6 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="new-skills.html"><a href="new-skills.html"><i class="fa fa-check"></i># New skills</a></li>
 <li class="chapter" data-level="" data-path="relational-databases.html"><a href="relational-databases.html"><i class="fa fa-check"></i># Relational databases</a></li>
 <li class="chapter" data-level="" data-path="covid-19-parameterized-report.html"><a href="covid-19-parameterized-report.html"><i class="fa fa-check"></i># COVID-19 parameterized report</a></li>
+<li class="chapter" data-level="" data-path="creating-an-r-package.html"><a href="creating-an-r-package.html"><i class="fa fa-check"></i># Creating an R package</a></li>
 </ul>
 
       </nav>
@@ -191,6 +214,7 @@ During this exercise I learned about the Guerrilla Analytics Principles. I will 
 ## |   \-- figure-html
 ## |       +-- covid cases-1.png
 ## |       \-- covid deaths-1.png
+## +-- 009_creating_Rpackage.Rmd
 ## +-- app
 ## |   \-- waternet_app.R
 ## +-- code
@@ -257,9 +281,13 @@ During this exercise I learned about the Guerrilla Analytics Principles. I will 
 ## +-- LICENSE
 ## +-- Portfolio_JariKoot_Herkansing.Rproj
 ## +-- README.md
+## +-- references.json
 ## +-- search_index.json
 ## +-- _book
+## |   +-- 404.html
+## |   +-- covid-19-parameterized-report-1.html
 ## |   +-- covid-19-parameterized-report.html
+## |   +-- creating-an-r-package.html
 ## |   +-- data
 ## |   |   \-- CV_jari.pdf
 ## |   +-- elegans-experiment.html
@@ -293,10 +321,14 @@ During this exercise I learned about the Guerrilla Analytics Principles. I will 
 ## |   |   |       +-- plugin-fontsettings.js
 ## |   |   |       +-- plugin-search.js
 ## |   |   |       \-- plugin-sharing.js
+## |   |   +-- header-attrs-2.11
+## |   |   |   \-- header-attrs.js
 ## |   |   +-- header-attrs-2.8
 ## |   |   |   \-- header-attrs.js
-## |   |   \-- jquery-2.2.3
-## |   |       \-- jquery.min.js
+## |   |   +-- jquery-2.2.3
+## |   |   |   \-- jquery.min.js
+## |   |   \-- jquery-3.6.0
+## |   |       \-- jquery-3.6.0.min.js
 ## |   +-- looking-ahead.html
 ## |   +-- new-skills.html
 ## |   +-- relational-databases.html
@@ -339,7 +371,6 @@ During this exercise I learned about the Guerrilla Analytics Principles. I will 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -379,6 +410,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

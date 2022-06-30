@@ -1,0 +1,13 @@
+
+# Creating an R package{-}
+================================================================================
+
+>__About the exercise__
+
+<br> 
+In this exercise I will create a package that will improve the R language. The package that I created is called MetricConvertor, the goal of the package is to make it easy to calculate the degrees in different metric numbers (Celcius, Fahrenheit and Kelvin). The package is available via the [MetricConvertor GitHub page](https://github.com/JariKoot/MetricConvertor). You can download the package with the following code:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("JariKoot/MetricConvertor")
+```
